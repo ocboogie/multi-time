@@ -8,6 +8,7 @@ import Hero from "../components/Hero";
 import Timers from "../components/Timers";
 
 export default () => (
+  // $FlowIssue
   <>
     <div className="section">
       <Hero />
