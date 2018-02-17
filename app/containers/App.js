@@ -14,15 +14,6 @@ export default () => (
     </div>
     <div className="divider" />
     <div className="section">
-      {/* <Timer
-        timer={{
-          x: 0,
-          y: 0,
-          time: 0,
-          paused: false,
-          name: "123123123123123123123123"
-        }}
-      /> */}
       <Timers
         timers={[
           { x: 0, y: 0, time: 0, name: "1", paused: false, id: uuid() },
