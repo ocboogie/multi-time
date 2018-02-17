@@ -1,25 +1,34 @@
 {
-  "name": "time-manager",
+  "name": "time-keeper",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --config webpack.config.dev.js",
     "prod": "webpack --config webpack.config.prod.js",
-    "dev": "webpack-dev-server",
+    "dev": "webpack-dev-server --config webpack.config.dev.js",
     "lint": "eslint --cache --format=node_modules/eslint-formatter-pretty .",
     "format": "npm run lint -- --fix",
     "flow": "flow",
     "flow-typed": "rimraf flow-typed/npm && flow-typed install --overwrite || true"
   },
   "dependencies": {
-    "materialize-css": "^1.0.0-alpha.3",
+    "@fortawesome/fontawesome": "^1.1.3",
+    "@fortawesome/fontawesome-free-solid": "^5.0.6",
+    "@fortawesome/react-fontawesome": "^0.0.17",
+    "geopattern": "^1.2.3",
+    "hammerjs": "^2.0.8",
+    "jquery": "^3.3.1",
+    "materialize-css": "^0.100.2",
+    "muuri": "^0.5.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-grid-layout": "^0.16.3",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "styled-components": "^3.1.6",
+    "uuid": "^3.2.1",
+    "web-animations-js": "^2.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.39",
@@ -51,11 +60,14 @@
     "node-sass": "^4.7.2",
     "prettier": "^1.10.2",
     "redux-logger": "^3.0.6",
+    "resolve-url-loader": "^2.2.1",
     "rimraf": "^2.6.2",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.20.1",
+    "uglifyjs-webpack-plugin": "^1.2.0",
     "url-loader": "^0.6.2",
     "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.11.1"
+    "webpack-dev-server": "^2.11.1",
+    "webpack-merge": "^4.1.1"
   }
 }

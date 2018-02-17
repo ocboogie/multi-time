@@ -1,3 +1,4 @@
+
 # Logs
 logs
 *.log
@@ -57,7 +58,6 @@ typings/
 # dotenv environment variables file
 .env
 
-assets
 dist
-production
+flow-typed
 package.json

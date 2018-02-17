@@ -1,17 +1,37 @@
 // @flow
 import React from "react";
+import uuid from "uuid/v4";
 
-import Counter from "./Counter";
+// import Counter from "./Counter";
 import Hero from "../components/Hero";
+// import Timer from "../components/Timer/index";
+import Timers from "../components/Timers";
 
 export default () => (
-  <div>
+  <>
     <div className="section">
       <Hero />
     </div>
     <div className="divider" />
     <div className="section">
-      <Counter />
+      {/* <Timer
+        timer={{
+          x: 0,
+          y: 0,
+          time: 0,
+          paused: false,
+          name: "123123123123123123123123"
+        }}
+      /> */}
+      <Timers
+        timers={[
+          { x: 0, y: 0, time: 0, name: "1", paused: false, id: uuid() },
+          { x: 1, y: 0, time: 0, name: "first", paused: false, id: uuid() },
+          { x: 1, y: 0, time: 0, name: "third", paused: false, id: uuid() },
+          { x: 1, y: 0, time: 0, name: "fourth", paused: false, id: uuid() },
+          { x: 1, y: 0, time: 0, name: "fifth", paused: false, id: uuid() }
+        ]}
+      />
     </div>
-  </div>
+  </>
 );

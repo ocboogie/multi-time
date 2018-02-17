@@ -1,14 +1,7 @@
 // @flow
 import { combineReducers } from "redux";
-import counter from "./counter";
-import type { State as CounterState } from "./counter";
+import timer from "./timer";
 
-const reducers = {
-  counter
-};
-
-export type State = {
-  +counter: CounterState
-};
-
-export default combineReducers(reducers);
+export default combineReducers({
+  timer
+});
