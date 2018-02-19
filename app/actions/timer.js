@@ -4,41 +4,41 @@ import type { Dispatch } from "../types/Store";
 
 type AddTimerAction = {
   type: "TIMER_ADD",
-  payload: Timer
+  timer: Timer
 };
-export function addTimer(payload: Timer): AddTimerAction {
+export function addTimer(timer: Timer): AddTimerAction {
   return {
     type: "TIMER_ADD",
-    payload
+    timer
   };
 }
 
 type RemoveTimerAction = {
   type: "TIMER_REMOVE",
-  payload: string
+  id: string
 };
 export function removeTimer(id: string): RemoveTimerAction {
   return {
     type: "TIMER_REMOVE",
-    payload: id
+    id
   };
 }
 
 type TickTimerAction = {
   type: "TIMER_TICK",
-  payload: string
+  id: string
 };
 export function tickTimer(id: string): TickTimerAction {
   return {
     type: "TIMER_TICK",
-    payload: id
+    id
   };
 }
 
 const timers = Object.create(null);
 type StartTimerAction = {
   type: "TIMER_START",
-  payload: string
+  id: string
 };
 export function startTimer(id: string) {
   return (dispatch: Dispatch) => {
@@ -46,7 +46,7 @@ export function startTimer(id: string) {
     timers[id] = setInterval(() => dispatch(tickTimer(id)), 1000);
     dispatch({
       type: "TIMER_START",
-      payload: id
+      id
     });
     dispatch(tickTimer(id));
   };
@@ -54,7 +54,7 @@ export function startTimer(id: string) {
 
 type StopTimerAction = {
   type: "TIMER_STOP",
-  payload: string
+  id: string
 };
 export function stopTimer(id: string) {
   clearInterval(timers[id]);
@@ -62,7 +62,7 @@ export function stopTimer(id: string) {
     clearInterval(timers[id]);
     dispatch({
       type: "TIMER_STOP",
-      payload: id
+      id
     });
     dispatch(tickTimer(id));
   };
@@ -70,18 +70,14 @@ export function stopTimer(id: string) {
 
 type EditTimerAction = {
   type: "TIMER_EDIT",
-  payload: {
-    id: string,
-    modification: ModTimer
-  }
+  id: string,
+  modification: ModTimer
 };
 export function editTimer(id: string, modification: ModTimer): EditTimerAction {
   return {
     type: "TIMER_EDIT",
-    payload: {
-      id,
-      modification
-    }
+    id,
+    modification
   };
 }
 

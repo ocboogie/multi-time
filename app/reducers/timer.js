@@ -7,18 +7,22 @@ export type TimerState = Array<Timer>;
 export default function(state: TimerState = [], action: Action): TimerState {
   switch (action.type) {
     case "TIMER_ADD":
-      return state.concat(action.payload);
-    case "TIMER_REMOVE":
-      return state.filter(timer => timer.id !== action.payload);
-    case "TIMER_TICK":
+      return state.concat(action.timer);
+    case "TIMER_REMOVE": {
+      const { id } = action;
+      return state.filter(timer => timer.id !== id);
+    }
+    case "TIMER_TICK": {
+      const { id } = action;
       return state.map(timer => {
-        if (timer.id === action.payload) {
+        if (timer.id === id) {
           return Object.assign({}, timer, { timer: timer.time + 1 });
         }
         return timer;
       });
+    }
     case "TIMER_EDIT": {
-      const { id, modification } = action.payload;
+      const { id, modification } = action;
       return state.map(timer => {
         if (timer.id === id) {
           return Object.assign({}, timer, modification);
