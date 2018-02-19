@@ -9,9 +9,9 @@ export default function counter(
   action: Action
 ): TimerState {
   switch (action.type) {
-    case "ADD_TIMER":
+    case "TIMER_ADD":
       return state.concat(action.payload);
-    case "REMOVE_TIMER":
+    case "TIMER_REMOVE":
       return state.concat(action.payload);
     default:
       return state;
