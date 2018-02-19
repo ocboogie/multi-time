@@ -44,6 +44,9 @@ export const Item = styled.div`
   }
   margin: 5px;
   z-index: 1;
+  touch-action: auto !important;
+  user-select: auto !important;
+  -webkit-user-drag: auto !important;
   &.muuri-item-dragging {
     z-index: 3;
   }

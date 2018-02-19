@@ -13,7 +13,14 @@ type Props = {
 export default class Timers extends Component<Props> {
   componentDidMount() {
     // eslint-disable-next-line no-new
-    new Muuri(".grid", { dragEnabled: true });
+    new Muuri(".grid", {
+      dragEnabled: true,
+      dragStartPredicate: {
+        distance: 0,
+        delay: 50,
+        handle: ".drag-handle"
+      }
+    });
   }
 
   render() {

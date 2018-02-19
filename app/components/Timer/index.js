@@ -14,7 +14,7 @@ type Props = {
 
 export default (props: Props) => (
   <Timer className="card">
-    <div className="card-image">
+    <div className="card-image drag-handle">
       <Title title={props.timer.name} />
     </div>
     <div className="card-content">
