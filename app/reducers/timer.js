@@ -12,7 +12,7 @@ export default function counter(
     case "TIMER_ADD":
       return state.concat(action.payload);
     case "TIMER_REMOVE":
-      return state.concat(action.payload);
+      return state.filter(timer => timer.id !== action.payload);
     default:
       return state;
   }

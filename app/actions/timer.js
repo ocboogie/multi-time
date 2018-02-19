@@ -14,12 +14,12 @@ export function addTimer(payload: Timer): AddTimerAction {
 
 type RemoveTimerAction = {
   type: "TIMER_REMOVE",
-  payload: Timer | string
+  payload: string
 };
-export function removeTimer(payload: string): RemoveTimerAction {
+export function removeTimer(id: string): RemoveTimerAction {
   return {
     type: "TIMER_REMOVE",
-    payload
+    payload: id
   };
 }
 
