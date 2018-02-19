@@ -4,8 +4,7 @@ export type Timer = {
   time: number,
   paused: boolean,
   id: string,
-  x: number,
-  y: number
+  position: number
 };
 
 export type ModTimer = {
@@ -13,6 +12,5 @@ export type ModTimer = {
   time?: number,
   paused?: boolean,
   id?: string,
-  x?: number,
-  y?: number
+  position?: number
 };
