@@ -23,4 +23,4 @@ export function removeTimer(payload: string): RemoveTimerAction {
   };
 }
 
-export type TimerAction = AddTimerAction;
+export type TimerAction = AddTimerAction | RemoveTimerAction;
