@@ -7,7 +7,8 @@ const Timer = styled.div`
   width: 300px;
   height: 280px;
   margin: 0.5rem 0 0rem 0 !important;
-  @media (max-width: 620px) {
+  /* Mobile */
+  @media (max-width: 680px) {
     width: 100%;
   }
   .card-image {
