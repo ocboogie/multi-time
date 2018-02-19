@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
 const Title = styled.div`
-  min-height: 100px;
   height: 100%;
   width: 100%;
-  overflow: hidden;
+  position: absolute;
 `;
 
 export default Title;
