@@ -4,25 +4,31 @@ const TimersContainer = styled.div`
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  /* Set limit to 6 cards */
-  max-width: 1899px;
+  /* Set limit to 7 cards */
+  max-width: 2170px;
+
+  /* 6 cards */
+  @media (max-width: 2210px) {
+    max-width: 1860px;
+  }
+
   /* 5 cards */
-  @media (max-width: 1899px) {
-    max-width: 1592px;
+  @media (max-width: 1900px) {
+    max-width: 1550px;
   }
 
   /* 4 cards */
-  @media (max-width: 1592px) {
-    max-width: 1296px;
+  @media (max-width: 1590px) {
+    max-width: 1240px;
   }
 
   /* 3 cards */
-  @media (max-width: 1296px) {
-    max-width: 965px;
+  @media (max-width: 1297px) {
+    max-width: 930px;
   }
 
   /* 2 cards */
-  @media (max-width: 965px) {
+  @media (max-width: 987px) {
     max-width: 620px;
   }
   /* No need for 1 card ./Timer/indexStyles.js handles that */
