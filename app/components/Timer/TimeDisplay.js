@@ -3,7 +3,7 @@ import React from "react";
 
 import TimeDisplay from "./TimeDisplayStyles";
 
-type Props = {
+export type Props = {
   time: number
 };
 

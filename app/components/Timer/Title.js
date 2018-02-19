@@ -6,7 +6,7 @@ import { faPlay } from "@fortawesome/fontawesome-free-solid";
 
 import Title, { Fab } from "./TitleStyles";
 
-type Props = {
+export type Props = {
   title: string
 };
 

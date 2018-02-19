@@ -6,7 +6,7 @@ import Timer from "./Timer";
 import type { Timer as TimerType } from "../types/Timer";
 import TimersContainer, { Item } from "./TimersStyles";
 
-type Props = {
+export type Props = {
   timers: Array<TimerType>
 };
 

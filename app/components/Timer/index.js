@@ -8,7 +8,7 @@ import Actions from "./Actions";
 
 import Timer from "./indexStyles";
 
-type Props = {
+export type Props = {
   timer: TimerType
 };
 
