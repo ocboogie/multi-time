@@ -24,7 +24,6 @@ export default class Timers extends Component<Props> {
   }
 
   render() {
-    // <Timer key={timer.id} timer={timer} />;
     const TimerComps = this.props.timers.map(timer => (
       <Item key={timer.id} className="item">
         <Timer timer={timer} />
