@@ -1,11 +1,8 @@
 // @flow
 import React from "react";
-import uuid from "uuid/v4";
 
-// import Counter from "./Counter";
 import Hero from "../components/Hero";
-// import Timer from "../components/Timer/index";
-import Timers from "../components/Timers";
+import Timers from "./Timers";
 
 export default () => (
   // $FlowIssue
@@ -15,18 +12,7 @@ export default () => (
     </div>
     <div className="divider" />
     <div className="section">
-      <Timers
-        timers={[
-          { position: 0, time: 0, name: "first", paused: false, id: uuid() },
-          { position: 1, time: 0, name: "second", paused: false, id: uuid() },
-          { position: 1, time: 0, name: "third", paused: false, id: uuid() },
-          { position: 1, time: 0, name: "fourth", paused: false, id: uuid() },
-          { position: 1, time: 0, name: "fifth", paused: false, id: uuid() },
-          { position: 1, time: 0, name: "sixth", paused: false, id: uuid() },
-          { position: 1, time: 0, name: "seventh", paused: false, id: uuid() },
-          { position: 1, time: 0, name: "eighth", paused: false, id: uuid() }
-        ]}
-      />
+      <Timers />
     </div>
   </>
 );
