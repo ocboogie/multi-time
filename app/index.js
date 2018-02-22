@@ -10,6 +10,7 @@ import Root from "./containers/Root";
 import { configureStore } from "./store";
 import { addTimer } from "./actions/timer";
 import type { State } from "./types/State";
+import "./muuriHack";
 import "./styles.global.scss";
 
 const state: State = { timer: [] };
