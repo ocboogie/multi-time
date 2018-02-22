@@ -30,7 +30,7 @@ export function configureStore(initialState: State): Store {
   const store: Store = createStore(
     rootReducer,
     initialState,
-    applyMiddleware(thunk)
+    applyMiddleware(...middleware)
   );
 
   return store;
