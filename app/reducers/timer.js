@@ -16,7 +16,7 @@ export default function(state: TimerState = [], action: Action): TimerState {
       const { id } = action;
       return state.map(timer => {
         if (timer.id === id) {
-          return Object.assign({}, timer, { timer: timer.time + 1 });
+          return Object.assign({}, timer, { time: timer.time + 1 });
         }
         return timer;
       });
