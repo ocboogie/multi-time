@@ -3,11 +3,11 @@ import React, { Component } from "react";
 import Muuri from "muuri";
 
 import Timer from "./Timer";
-import type { Timer as TimerType } from "../types/Timer";
+import type { TimerState } from "../reducers/timer";
 import TimersContainer, { Item } from "./TimersStyles";
 
 export type Props = {
-  timers: Array<TimerType>
+  timers: TimerState
 };
 
 export default class Timers extends Component<Props> {
@@ -24,11 +24,15 @@ export default class Timers extends Component<Props> {
   }
 
   render() {
-    const TimerComps = this.props.timers.map(timer => (
-      <Item key={timer.id} className="item">
-        <Timer timer={timer} />
-      </Item>
-    ));
+    // See https://github.com/facebook/flow/issues/2221
+    const TimerComps = Object.keys(this.props.timers).map(timerId => {
+      const timer = this.props.timers[timerId];
+      return (
+        <Item key={timer.id} className="item">
+          <Timer timer={timer} />
+        </Item>
+      );
+    });
 
     return <TimersContainer className="grid">{TimerComps}</TimersContainer>;
   }

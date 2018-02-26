@@ -2,33 +2,35 @@
 import type { Action } from "../types/Action";
 import type { Timer } from "../types/Timer";
 
-export type TimerState = Array<Timer>;
+export type TimerState = { [string]: Timer };
 
-export default function(state: TimerState = [], action: Action): TimerState {
+export default function(state: TimerState = {}, action: Action): TimerState {
   switch (action.type) {
     case "TIMER_ADD":
-      return state.concat(action.timer);
+      return { ...state, [action.timer.id]: action.timer };
     case "TIMER_REMOVE": {
       const { id } = action;
-      return state.filter(timer => timer.id !== id);
+      return { ...state, [id]: undefined };
     }
     case "TIMER_TICK": {
       const { id } = action;
-      return state.map(timer => {
-        if (timer.id === id) {
-          return Object.assign({}, timer, { time: timer.time + 1 });
-        }
-        return timer;
-      });
+      const tickedState = { ...state };
+      const timer = tickedState[id];
+      if (timer) {
+        timer.time += 1;
+      }
+      // Once I can use optional chaining:
+      // tickedState[id]?.time += 1;
+      return tickedState;
     }
     case "TIMER_EDIT": {
       const { id, modification } = action;
-      return state.map(timer => {
-        if (timer.id === id) {
-          return Object.assign({}, timer, modification);
-        }
-        return timer;
-      });
+      const editedState = { ...state };
+      const timer = editedState[id];
+      if (timer) {
+        editedState[id] = Object.assign(timer, modification);
+      }
+      return editedState;
     }
     default:
       return state;
