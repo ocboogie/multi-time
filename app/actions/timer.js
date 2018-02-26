@@ -57,14 +57,12 @@ type StopTimerAction = {
   id: string
 };
 export function stopTimer(id: string) {
-  clearInterval(timers[id]);
   return (dispatch: Dispatch) => {
     clearInterval(timers[id]);
     dispatch({
       type: "TIMER_STOP",
       id
     });
-    dispatch(tickTimer(id));
   };
 }
 
