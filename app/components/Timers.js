@@ -7,7 +7,9 @@ import type { TimerState } from "../reducers/timer";
 import TimersContainer, { Item } from "./TimersStyles";
 
 export type Props = {
-  timers: TimerState
+  timers: TimerState,
+  play: (id: string) => void,
+  pause: (id: string) => void
 };
 
 export default class Timers extends Component<Props> {
@@ -29,7 +31,11 @@ export default class Timers extends Component<Props> {
       const timer = this.props.timers[timerId];
       return (
         <Item key={timer.id} className="item">
-          <Timer timer={timer} />
+          <Timer
+            play={this.props.play}
+            pause={this.props.pause}
+            timer={timer}
+          />
         </Item>
       );
     });

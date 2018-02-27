@@ -9,16 +9,23 @@ import Actions from "./Actions";
 import Timer from "./indexStyles";
 
 export type Props = {
-  timer: TimerType
+  timer: TimerType,
+  play: (id: string) => void,
+  pause: (id: string) => void
 };
 
 export default (props: Props) => (
   <Timer className="card">
     <div className="card-image drag-handle">
-      <Title title={props.timer.name} />
+      <Title
+        play={() => props.play(props.timer.id)} // Could be slow performance-wise
+        pause={() => props.pause(props.timer.id)} // this as well
+        paused={props.timer.paused}
+        title={props.timer.name}
+      />
     </div>
     <div className="card-content">
-      <TimeDisplay time={1000} />
+      <TimeDisplay time={props.timer.time} />
     </div>
     <div className="card-action">
       <Actions />

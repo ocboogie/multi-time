@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Title = styled.div`
+const TitleContainer = styled.div`
   height: 100%;
   width: 100%;
   position: absolute;
@@ -9,9 +9,15 @@ const Title = styled.div`
   -webkit-user-drag: none;
 `;
 
-export default Title;
+export default TitleContainer;
 
-export const Fab = styled.div`
+export const PlayFab = styled.div`
   margin-left: 2px;
+  margin-top: 1px;
+  text-align: center;
+`;
+
+export const PauseFab = styled.div`
+  margin-top: 1px;
   text-align: center;
 `;

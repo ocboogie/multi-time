@@ -32,6 +32,22 @@ export default function(state: TimerState = {}, action: Action): TimerState {
       }
       return editedState;
     }
+    case "TIMER_START": {
+      const { id } = action;
+      const editedState = { ...state };
+      if (Object.prototype.hasOwnProperty.call(editedState, id)) {
+        editedState[id].paused = false;
+      }
+      return editedState;
+    }
+    case "TIMER_STOP": {
+      const { id } = action;
+      const editedState = { ...state };
+      if (Object.prototype.hasOwnProperty.call(editedState, id)) {
+        editedState[id].paused = true;
+      }
+      return editedState;
+    }
     default:
       return state;
   }
