@@ -45,8 +45,7 @@ export default class Title extends Component<Props> {
     return (
       <TitleContainer
         style={{
-          backgroundImage: `url('data:image/svg+xml;utf8,${pattern.toSvg()}')`
-          // backgroundImage: pattern.toDataUrl()
+          backgroundImage: pattern.toDataUrl()
         }}
       >
         <span className="card-title">{this.props.title}</span>
