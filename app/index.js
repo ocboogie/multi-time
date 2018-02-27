@@ -5,14 +5,15 @@ import "@fortawesome/fontawesome";
 import "web-animations-js";
 import "hammerjs";
 import "materialize-css";
+import "materialize-css/dist/css/materialize.min.css";
 
 import Root from "./containers/Root";
 import { configureStore } from "./store";
-import { addTimer, startTimer } from "./actions/timer";
+import { addTimer } from "./actions/timer";
 import type { State } from "./types/State";
 import type { Store } from "./types/Store";
 import "./muuriHack";
-import "./styles.global.scss";
+import "./index.css";
 
 const state: State = { timer: [] };
 

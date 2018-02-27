@@ -1,93 +1,21 @@
 const webpack = require("webpack");
-const AutoDllPlugin = require("autodll-webpack-plugin");
 const merge = require("webpack-merge");
 
 const baseConfig = require("./webpack.config");
-const pkg = require("./package.json");
 
 const port = process.env.PORT || 8080;
 
 module.exports = merge.smart(baseConfig, {
-  devtool: "inline-source-map",
-
   module: {
     rules: [
       {
-        test: /\.global\.css$/,
+        test: /\.css$/,
         use: [
           {
             loader: "style-loader"
           },
           {
             loader: "css-loader",
-            options: {
-              sourceMap: true
-            }
-          }
-        ]
-      },
-      {
-        test: /^((?!\.global).)*\.css$/,
-        use: [
-          {
-            loader: "style-loader"
-          },
-          {
-            loader: "resolve-url-loader"
-          },
-          {
-            loader: "css-loader",
-            options: {
-              modules: true,
-              sourceMap: true,
-              importLoaders: 1,
-              localIdentName: "[name]__[local]__[hash:base64:5]"
-            }
-          }
-        ]
-      },
-      // SASS support - compile all .global.scss files and pipe it to style.css
-      {
-        test: /\.global\.(scss|sass)$/,
-        use: [
-          {
-            loader: "style-loader"
-          },
-          {
-            loader: "css-loader",
-            options: {
-              sourceMap: true
-            }
-          },
-          {
-            loader: "resolve-url-loader"
-          },
-          {
-            loader: "sass-loader",
-            options: {
-              sourceMap: true
-            }
-          }
-        ]
-      },
-      // SASS support - compile all other .scss files and pipe it to style.css
-      {
-        test: /^((?!\.global).)*\.(scss|sass)$/,
-        use: [
-          {
-            loader: "style-loader"
-          },
-          {
-            loader: "css-loader",
-            options: {
-              modules: true,
-              sourceMap: true,
-              importLoaders: 1,
-              localIdentName: "[name]__[local]__[hash:base64:5]"
-            }
-          },
-          {
-            loader: "sass-loader",
             options: {
               sourceMap: true
             }
@@ -153,14 +81,6 @@ module.exports = merge.smart(baseConfig, {
   plugins: [
     new webpack.EnvironmentPlugin({
       NODE_ENV: "development"
-    }),
-
-    new AutoDllPlugin({
-      inject: true,
-      filename: "[name].js",
-      entry: {
-        vendor: Object.keys(pkg.dependencies)
-      }
     })
   ],
   devServer: {
