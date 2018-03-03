@@ -1,6 +1,7 @@
 // @flow
 import type { Timer, ModTimer } from "../types/Timer";
-import type { Dispatch } from "../types/Store";
+import type { Dispatch, GetState } from "../types/Store";
+import { AppendTrash } from "./trash";
 
 type AddTimerAction = {
   type: "TIMER_ADD",
@@ -17,9 +18,32 @@ type RemoveTimerAction = {
   type: "TIMER_REMOVE",
   id: string
 };
-export function removeTimer(id: string): RemoveTimerAction {
+export function removeTimer(id: string) {
+  return (dispatch: Dispatch, getState: GetState) => {
+    const state = getState();
+    const timer = state.timer[id];
+    if (!timer) {
+      return;
+    }
+    dispatch({
+      type: "TIMER_REMOVE",
+      id
+    });
+    dispatch(AppendTrash(timer));
+    dispatch({
+      type: "TIMER_PERM_REMOVE",
+      id
+    });
+  };
+}
+
+type PermRemoveTimerAction = {
+  type: "TIMER_PERM_REMOVE",
+  id: string
+};
+export function permRemoveTimer(id: string): PermRemoveTimerAction {
   return {
-    type: "TIMER_REMOVE",
+    type: "TIMER_PERM_REMOVE",
     id
   };
 }
@@ -79,9 +103,19 @@ export function editTimer(id: string, modification: ModTimer): EditTimerAction {
   };
 }
 
+type UndoTimerAction = {
+  type: "TIMER_UNDO"
+};
+export function undoTimer(): UndoTimerAction {
+  return {
+    type: "TIMER_UNDO"
+  };
+}
+
 export type TimerAction =
   | AddTimerAction
   | RemoveTimerAction
+  | PermRemoveTimerAction
   | TickTimerAction
   | StartTimerAction
   | StopTimerAction
