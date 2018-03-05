@@ -16,7 +16,7 @@ export type Props = {
 
 export default (props: Props) => (
   <Timer className="card">
-    <div className="card-image drag-handle">
+    <div className="card-image">
       <Title
         play={() => props.play(props.timer.id)} // Could be slow performance-wise
         pause={() => props.pause(props.timer.id)} // this as well

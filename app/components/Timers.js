@@ -1,6 +1,5 @@
 // @flow
-import React, { Component } from "react";
-import Muuri from "muuri";
+import React from "react";
 
 import Timer from "./Timer";
 import type { TimerState } from "../reducers/timer";
@@ -12,34 +11,16 @@ export type Props = {
   pause: (id: string) => void
 };
 
-export default class Timers extends Component<Props> {
-  componentDidMount() {
-    // eslint-disable-next-line no-new
-    new Muuri(".grid", {
-      dragEnabled: true,
-      dragStartPredicate: {
-        distance: 0,
-        delay: 50,
-        handle: ".drag-handle"
-      }
-    });
-  }
+export default (props: Props) => {
+  // See https://github.com/facebook/flow/issues/2221
+  const TimerComps = Object.keys(props.timers).map(timerId => {
+    const timer = props.timers[timerId];
+    return (
+      <Item key={timer.id}>
+        <Timer play={props.play} pause={props.pause} timer={timer} />
+      </Item>
+    );
+  });
 
-  render() {
-    // See https://github.com/facebook/flow/issues/2221
-    const TimerComps = Object.keys(this.props.timers).map(timerId => {
-      const timer = this.props.timers[timerId];
-      return (
-        <Item key={timer.id} className="item">
-          <Timer
-            play={this.props.play}
-            pause={this.props.pause}
-            timer={timer}
-          />
-        </Item>
-      );
-    });
-
-    return <TimersContainer className="grid">{TimerComps}</TimersContainer>;
-  }
-}
+  return <TimersContainer>{TimerComps}</TimersContainer>;
+};

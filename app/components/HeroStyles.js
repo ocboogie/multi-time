@@ -7,7 +7,7 @@ const Hero = styled.div`
   display: flex;
   justify-content: space-between;
   /* Mobile */
-  @media (max-width: 680px) {
+  @media (max-width: 700px) {
     flex-direction: column;
   }
 `;
