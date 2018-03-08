@@ -2,8 +2,6 @@ import React from "react";
 import { render } from "react-dom";
 import uuid from "uuid/v4";
 import "@fortawesome/fontawesome";
-import "web-animations-js";
-import "hammerjs";
 import "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
 
