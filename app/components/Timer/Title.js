@@ -23,31 +23,25 @@ export default class Title extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    // $FlowFixMe
-    this.fabClickHandler = this.fabClickHandler.bind(this);
-    // $FlowFixMe
-    this.handleTitleChange = this.handleTitleChange.bind(this);
-    // $FlowFixMe
-    this.handleTitleBlur = this.handleTitleBlur.bind(this);
     this.state = { title: this.props.title };
   }
 
-  fabClickHandler() {
+  fabClickHandler = () => {
     if (this.props.paused) {
       this.props.play();
     } else {
       this.props.pause();
     }
-  }
+  };
 
   // eslint-disable-next-line no-undef
-  handleTitleChange(event: SyntheticInputEvent<HTMLInputElement>) {
+  handleTitleChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
     this.setState({ title: event.target.value });
-  }
+  };
 
-  handleTitleBlur() {
+  handleTitleBlur = () => {
     this.props.changeTitle(this.state.title);
-  }
+  };
 
   render() {
     // eslint-disable-next-line no-undef

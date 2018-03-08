@@ -27,16 +27,12 @@ export default class Timer extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    // $FlowFixMe
-    this.handleDelete = this.handleDelete.bind(this);
-    // $FlowFixMe
-    this.handleEdit = this.handleEdit.bind(this);
     this.state = {
       editableTitle: false
     };
   }
 
-  handleDelete() {
+  handleDelete = () => {
     this.props.delete(this.props.timer.id);
     const $button = $('<button class="btn-flat toast-action">Undo</button>');
     const $toastContent = $("<span>You deleted a timer</span>").add($button);
@@ -45,11 +41,11 @@ export default class Timer extends Component<Props, State> {
       toast.remove();
       this.props.popTrash();
     });
-  }
+  };
 
-  handleEdit() {
+  handleEdit = () => {
     this.setState({ editableTitle: true });
-  }
+  };
 
   render() {
     return (
