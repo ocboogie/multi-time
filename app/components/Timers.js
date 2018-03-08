@@ -9,7 +9,9 @@ import TimersContainer, { Item } from "./TimersStyles";
 export type Props = {
   timers: TimerState,
   play: (id: string) => void,
-  pause: (id: string) => void
+  pause: (id: string) => void,
+  delete: (id: string) => void,
+  popTrash: () => void
 };
 
 export default (props: Props) => {
@@ -18,7 +20,13 @@ export default (props: Props) => {
     .sort((a: TimerType, b: TimerType) => a.name.localeCompare(b.name)) // $FlowIssue
     .map((timer: TimerType) => (
       <Item key={timer.id}>
-        <Timer play={props.play} pause={props.pause} timer={timer} />
+        <Timer
+          play={props.play}
+          pause={props.pause}
+          delete={props.delete}
+          popTrash={props.popTrash}
+          timer={timer}
+        />
       </Item>
     ));
 
