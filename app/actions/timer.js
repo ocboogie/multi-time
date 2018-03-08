@@ -1,7 +1,7 @@
 // @flow
 import type { Timer, ModTimer } from "../types/Timer";
 import type { Dispatch, GetState } from "../types/Store";
-import { AppendTrash } from "./trash";
+import { appendTrash } from "./trash";
 
 type AddTimerAction = {
   type: "TIMER_ADD",
@@ -29,7 +29,7 @@ export function removeTimer(id: string) {
       type: "TIMER_REMOVE",
       id
     });
-    dispatch(AppendTrash(timer));
+    dispatch(appendTrash(timer));
     dispatch({
       type: "TIMER_PERM_REMOVE",
       id
