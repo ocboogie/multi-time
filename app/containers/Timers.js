@@ -1,11 +1,15 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import Timers from "../components/Timers";
-import { startTimer, stopTimer, removeTimer } from "../actions/timer";
 import { popTrash } from "../actions/trash";
 import type { Props } from "../components/Timers";
-
 import type { State } from "../types/State";
+import {
+  startTimer,
+  stopTimer,
+  removeTimer,
+  editTimer
+} from "../actions/timer";
 
 function mapStateToProps(state: State): Props {
   return {
@@ -18,7 +22,8 @@ function mapDispatchToProps(dispatch) {
     play: bindActionCreators(startTimer, dispatch),
     pause: bindActionCreators(stopTimer, dispatch),
     delete: bindActionCreators(removeTimer, dispatch),
-    popTrash: bindActionCreators(popTrash, dispatch)
+    popTrash: bindActionCreators(popTrash, dispatch),
+    editTimer: bindActionCreators(editTimer, dispatch)
   };
 }
 

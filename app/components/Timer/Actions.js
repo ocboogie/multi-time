@@ -7,7 +7,8 @@ import { faEdit, faTrashAlt } from "@fortawesome/fontawesome-free-solid";
 import ActionsContainer from "./ActionsStyles";
 
 export type Props = {
-  delete: () => void
+  delete: () => void,
+  edit: () => void
 };
 
 export default class Actions extends Component<Props> {
@@ -27,6 +28,7 @@ export default class Actions extends Component<Props> {
     return (
       <ActionsContainer>
         <FontAwesomeIcon
+          onClick={this.props.edit}
           className="action-tooltipped"
           data-position="bottom"
           data-delay="25"

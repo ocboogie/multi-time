@@ -18,3 +18,11 @@ export const PauseFab = styled.div`
   margin-top: 1px;
   text-align: center;
 `;
+
+export const TitleEdit = styled.input`
+  border-bottom: none !important;
+  height: auto !important;
+  margin: 0 !important;
+  font-size: 24px !important;
+  font-weight: 300 !important;
+`;

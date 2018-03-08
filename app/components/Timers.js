@@ -3,7 +3,7 @@ import React from "react";
 
 import Timer from "./Timer";
 import type { TimerState } from "../reducers/timer";
-import type { Timer as TimerType } from "../types/Timer";
+import type { Timer as TimerType, ModTimer } from "../types/Timer";
 import TimersContainer, { Item } from "./TimersStyles";
 
 export type Props = {
@@ -11,7 +11,8 @@ export type Props = {
   play: (id: string) => void,
   pause: (id: string) => void,
   delete: (id: string) => void,
-  popTrash: () => void
+  popTrash: () => void,
+  editTimer: (id: string, modification: ModTimer) => void
 };
 
 export default (props: Props) => {
@@ -25,6 +26,7 @@ export default (props: Props) => {
           pause={props.pause}
           delete={props.delete}
           popTrash={props.popTrash}
+          editTimer={props.editTimer}
           timer={timer}
         />
       </Item>
