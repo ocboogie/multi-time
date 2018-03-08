@@ -30,7 +30,7 @@ export default function(state: TimerState = {}, action: Action): TimerState {
       const editedState = { ...state };
       const timer = editedState[id];
       if (timer) {
-        editedState[id] = Object.assign(timer, modification);
+        Object.assign(timer, modification);
       }
       return editedState;
     }
