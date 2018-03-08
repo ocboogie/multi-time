@@ -12,7 +12,7 @@ import { configureStore } from "./store";
 import { addTimer } from "./actions/timer";
 import type { State } from "./types/State";
 import type { Store } from "./types/Store";
-import "./index.css";
+import "./style";
 
 const state: State = { timer: [] };
 
