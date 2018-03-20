@@ -5,18 +5,29 @@ import { appendTrash } from "./trash";
 
 type AddTimerAction = {
   type: "TIMER_ADD",
-  timer: Timer
+  payload: { timer: Timer }
 };
 export function addTimer(timer: Timer): AddTimerAction {
   return {
     type: "TIMER_ADD",
-    timer
+    payload: { timer }
+  };
+}
+
+type PermRemoveTimerAction = {
+  type: "TIMER_PERM_REMOVE",
+  payload: { id: string }
+};
+export function permRemoveTimer(id: string): PermRemoveTimerAction {
+  return {
+    type: "TIMER_PERM_REMOVE",
+    payload: { id }
   };
 }
 
 type RemoveTimerAction = {
   type: "TIMER_REMOVE",
-  id: string
+  payload: { id: string }
 };
 export function removeTimer(id: string) {
   return (dispatch: Dispatch, getState: GetState) => {
@@ -30,39 +41,25 @@ export function removeTimer(id: string) {
       id
     });
     dispatch(appendTrash(timer));
-    dispatch({
-      type: "TIMER_PERM_REMOVE",
-      id
-    });
-  };
-}
-
-type PermRemoveTimerAction = {
-  type: "TIMER_PERM_REMOVE",
-  id: string
-};
-export function permRemoveTimer(id: string): PermRemoveTimerAction {
-  return {
-    type: "TIMER_PERM_REMOVE",
-    id
+    dispatch(permRemoveTimer(id));
   };
 }
 
 type TickTimerAction = {
   type: "TIMER_TICK",
-  id: string
+  payload: { id: string }
 };
 export function tickTimer(id: string): TickTimerAction {
   return {
     type: "TIMER_TICK",
-    id
+    payload: { id }
   };
 }
 
 const timers = Object.create(null);
 type StartTimerAction = {
   type: "TIMER_START",
-  id: string
+  payload: { id: string }
 };
 export function startTimer(id: string) {
   return (dispatch: Dispatch) => {
@@ -70,7 +67,7 @@ export function startTimer(id: string) {
     timers[id] = setInterval(() => dispatch(tickTimer(id)), 1000);
     dispatch({
       type: "TIMER_START",
-      id
+      payload: { id }
     });
     dispatch(tickTimer(id));
   };
@@ -78,28 +75,32 @@ export function startTimer(id: string) {
 
 type StopTimerAction = {
   type: "TIMER_STOP",
-  id: string
+  payload: { id: string }
 };
 export function stopTimer(id: string) {
   return (dispatch: Dispatch) => {
     clearInterval(timers[id]);
     dispatch({
       type: "TIMER_STOP",
-      id
+      payload: { id }
     });
   };
 }
 
 type EditTimerAction = {
   type: "TIMER_EDIT",
-  id: string,
-  modification: ModTimer
+  payload: {
+    id: string,
+    modification: ModTimer
+  }
 };
 export function editTimer(id: string, modification: ModTimer): EditTimerAction {
   return {
     type: "TIMER_EDIT",
-    id,
-    modification
+    payload: {
+      id,
+      modification
+    }
   };
 }
 

@@ -5,12 +5,12 @@ import type { Dispatch, GetState } from "../types/Store";
 
 type AppendTrashAction = {
   type: "TRASH_APPEND",
-  timer: Timer
+  payload: { timer: Timer }
 };
 export function appendTrash(timer: Timer): AppendTrashAction {
   return {
     type: "TRASH_APPEND",
-    timer
+    payload: { timer }
   };
 }
 
