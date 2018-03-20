@@ -42,6 +42,7 @@ export function displayUndo() {
     const $toastContent = $("<span>You deleted a timer</span>").add($button);
     const toast = Materialize.toast($toastContent, 10000);
     $button.click(() => {
+      $button.unbind("click");
       toast.remove();
       dispatch(popTrash());
     });
