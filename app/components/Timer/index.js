@@ -1,7 +1,5 @@
 // @flow
 import React, { Component } from "react";
-import Materialize from "materialize-css";
-import $ from "jquery";
 
 import type { Timer as TimerType, ModTimer } from "../../types/Timer";
 import Title from "./Title";
@@ -15,7 +13,6 @@ export type Props = {
   play: (id: string) => void,
   pause: (id: string) => void,
   delete: (id: string) => void,
-  popTrash: () => void,
   editTimer: (id: string, modification: ModTimer) => void
 };
 
@@ -32,13 +29,6 @@ export default class Timer extends Component<Props, State> {
 
   handleDelete = () => {
     this.props.delete(this.props.timer.id);
-    const $button = $('<button class="btn-flat toast-action">Undo</button>');
-    const $toastContent = $("<span>You deleted a timer</span>").add($button);
-    const toast = Materialize.toast($toastContent, 10000);
-    $button.click(() => {
-      toast.remove();
-      this.props.popTrash();
-    });
   };
 
   handleEdit = () => {

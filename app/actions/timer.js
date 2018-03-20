@@ -3,7 +3,7 @@ import uuid from "uuid/v4";
 
 import type { Timer, ModTimer } from "../types/Timer";
 import type { Dispatch, GetState } from "../types/Store";
-import { appendTrash } from "./trash";
+import { appendTrash, displayUndo } from "./trash";
 
 type AddTimerAction = {
   type: "TIMER_ADD",
@@ -68,6 +68,7 @@ export function removeTimer(id: string) {
     });
     dispatch(appendTrash(timer));
     dispatch(permRemoveTimer(id));
+    dispatch(displayUndo());
   };
 }
 

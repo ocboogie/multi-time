@@ -1,4 +1,7 @@
 // @flow
+import Materialize from "materialize-css";
+import $ from "jquery";
+
 import { addTimer } from "./timer";
 import type { Timer } from "../types/Timer";
 import type { Dispatch, GetState } from "../types/Store";
@@ -27,4 +30,25 @@ export function popTrash() {
   };
 }
 
-export type TrashAction = PopTrashAction | AppendTrashAction;
+type DisplayUndoAction = {
+  type: "TRASH_DISPLAY_UNDO"
+};
+export function displayUndo() {
+  return (dispatch: Dispatch) => {
+    dispatch({
+      type: "TRASH_DISPLAY_UNDO"
+    });
+    const $button = $('<button class="btn-flat toast-action">Undo</button>');
+    const $toastContent = $("<span>You deleted a timer</span>").add($button);
+    const toast = Materialize.toast($toastContent, 10000);
+    $button.click(() => {
+      toast.remove();
+      dispatch(popTrash());
+    });
+  };
+}
+
+export type TrashAction =
+  | PopTrashAction
+  | AppendTrashAction
+  | DisplayUndoAction;
