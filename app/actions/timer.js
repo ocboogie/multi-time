@@ -1,4 +1,6 @@
 // @flow
+import uuid from "uuid/v4";
+
 import type { Timer, ModTimer } from "../types/Timer";
 import type { Dispatch, GetState } from "../types/Store";
 import { appendTrash } from "./trash";
@@ -11,6 +13,30 @@ export function addTimer(timer: Timer): AddTimerAction {
   return {
     type: "TIMER_ADD",
     payload: { timer }
+  };
+}
+
+type GenerateTimerAction = {
+  type: "TIMER_GENERATE",
+  payload: { timer: ModTimer }
+};
+export function generateTimer(timer: ModTimer) {
+  return (dispatch: Dispatch) => {
+    dispatch(
+      ({
+        type: "TIMER_GENERATE",
+        payload: { timer }
+      }: GenerateTimerAction)
+    );
+    const timerGen: Timer = {
+      name: null,
+      time: 0,
+      paused: true,
+      id: uuid(),
+      ...timer
+    };
+
+    dispatch(addTimer(timerGen));
   };
 }
 
@@ -115,6 +141,7 @@ export function undoTimer(): UndoTimerAction {
 
 export type TimerAction =
   | AddTimerAction
+  | GenerateTimerAction
   | RemoveTimerAction
   | PermRemoveTimerAction
   | TickTimerAction

@@ -1,6 +1,6 @@
 // @flow
 export type Timer = {
-  name: string,
+  name: string | null,
   time: number,
   paused: boolean,
   id: string

@@ -27,7 +27,7 @@ export default class Timer extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    this.state = { editableTitle: false };
+    this.state = { editableTitle: props.timer.name === null };
   }
 
   handleDelete = () => {
@@ -61,7 +61,7 @@ export default class Timer extends Component<Props, State> {
             paused={
               this.props.timer.paused // this as well
             }
-            title={this.props.timer.name}
+            title={this.props.timer.name || ""}
             changeTitle={(title: string) =>
               this.props.editTimer(this.props.timer.id, { name: title })
             }
