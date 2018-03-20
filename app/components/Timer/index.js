@@ -27,9 +27,7 @@ export default class Timer extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    this.state = {
-      editableTitle: false
-    };
+    this.state = { editableTitle: false };
   }
 
   handleDelete = () => {
@@ -47,19 +45,28 @@ export default class Timer extends Component<Props, State> {
     this.setState({ editableTitle: true });
   };
 
+  handleEditCancel = () => {
+    this.setState({ editableTitle: false });
+  };
+
   render() {
     return (
       <TimerContainer className="card">
         <div className="card-image">
           <Title
-            play={() => this.props.play(this.props.timer.id)} // Could be slow performance-wise
-            pause={() => this.props.pause(this.props.timer.id)} // this as well
-            paused={this.props.timer.paused}
+            play={() => this.props.play(this.props.timer.id)}
+            pause={
+              () => this.props.pause(this.props.timer.id) // Could be slow performance-wise
+            }
+            paused={
+              this.props.timer.paused // this as well
+            }
             title={this.props.timer.name}
             changeTitle={(title: string) =>
               this.props.editTimer(this.props.timer.id, { name: title })
             }
             editable={this.state.editableTitle}
+            cancelEdit={this.handleEditCancel}
           />
         </div>
         <div className="card-content">

@@ -12,12 +12,11 @@ export type Props = {
   editable: boolean,
   play: () => void,
   pause: () => void,
-  changeTitle: (title: string) => void
+  changeTitle: (title: string) => void,
+  cancelEdit: () => void
 };
 
-export type State = {
-  title: string
-};
+export type State = { title: string };
 
 export default class Title extends Component<Props, State> {
   constructor(props: Props) {
@@ -40,6 +39,7 @@ export default class Title extends Component<Props, State> {
   };
 
   handleTitleBlur = () => {
+    this.props.cancelEdit();
     this.props.changeTitle(this.state.title);
   };
 
