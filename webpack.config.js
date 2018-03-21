@@ -44,7 +44,9 @@ module.exports = {
   },
   resolve: {
     alias: {
-      jquery: path.resolve("node_modules/jquery/dist/jquery")
+      jquery: path.resolve("node_modules/jquery/dist/jquery"),
+      "@fortawesome/fontawesome-free-solid$":
+        "@fortawesome/fontawesome-free-solid/shakable.es.js"
     }
   }
 };

@@ -78,11 +78,6 @@ module.exports = merge.smart(baseConfig, {
       }
     ]
   },
-  plugins: [
-    new webpack.EnvironmentPlugin({
-      NODE_ENV: "development"
-    })
-  ],
   devServer: {
     port,
     progress: true

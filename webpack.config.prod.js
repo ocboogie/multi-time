@@ -1,4 +1,3 @@
-const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const merge = require("webpack-merge");
 
@@ -78,11 +77,5 @@ module.exports = merge.smart(baseConfig, {
     ]
   },
 
-  plugins: [
-    new webpack.EnvironmentPlugin({
-      NODE_ENV: "production"
-    }),
-
-    new ExtractTextPlugin("style.css")
-  ]
+  plugins: [new ExtractTextPlugin("style.css")]
 });

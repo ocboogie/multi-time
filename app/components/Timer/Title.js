@@ -2,7 +2,8 @@
 import React, { Component } from "react";
 import geoPattern from "geopattern";
 import FontAwesomeIcon from "@fortawesome/react-fontawesome";
-import { faPlay, faPause } from "@fortawesome/fontawesome-free-solid";
+import faPlay from "@fortawesome/fontawesome-free-solid/faPlay";
+import faPause from "@fortawesome/fontawesome-free-solid/faPause";
 
 import TitleContainer, { PauseFab, PlayFab, TitleEdit } from "./TitleStyles";
 

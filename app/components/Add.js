@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import FontAwesomeIcon from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/fontawesome-free-solid";
+import faPlus from "@fortawesome/fontawesome-free-solid/faPlus";
 
 import AddFab from "./AddStyles";
 
