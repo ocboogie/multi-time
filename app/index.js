@@ -1,3 +1,4 @@
+// @flow
 import React from "react";
 import { render } from "react-dom";
 import uuid from "uuid/v4";
