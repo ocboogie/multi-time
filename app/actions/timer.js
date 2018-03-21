@@ -134,15 +134,6 @@ export function editTimer(id: string, modification: ModTimer): EditTimerAction {
   };
 }
 
-type UndoTimerAction = {
-  type: "TIMER_UNDO"
-};
-export function undoTimer(): UndoTimerAction {
-  return {
-    type: "TIMER_UNDO"
-  };
-}
-
 export type TimerAction =
   | AddTimerAction
   | GenerateTimerAction
