@@ -51,29 +51,6 @@ export function permRemoveTimer(id: string): PermRemoveTimerAction {
   };
 }
 
-type RemoveTimerAction = {
-  type: "TIMER_REMOVE",
-  payload: { id: string }
-};
-export function removeTimer(id: string) {
-  return (dispatch: Dispatch, getState: GetState) => {
-    const state = getState();
-    const timer = state.timer[id];
-    if (!timer) {
-      return;
-    }
-    dispatch(
-      ({
-        type: "TIMER_REMOVE",
-        payload: { id }
-      }: RemoveTimerAction)
-    );
-    dispatch(appendTrash(timer));
-    dispatch(permRemoveTimer(id));
-    dispatch(displayUndo());
-  };
-}
-
 type TickTimerAction = {
   type: "TIMER_TICK",
   payload: { id: string }
@@ -116,6 +93,30 @@ export function stopTimer(id: string) {
   };
 }
 
+type RemoveTimerAction = {
+  type: "TIMER_REMOVE",
+  payload: { id: string }
+};
+export function removeTimer(id: string) {
+  return (dispatch: Dispatch, getState: GetState) => {
+    const state = getState();
+    const timer: Timer = state.timer[id];
+    if (!timer) {
+      return;
+    }
+    dispatch(stopTimer(timer.id));
+    dispatch(
+      ({
+        type: "TIMER_REMOVE",
+        payload: { id }
+      }: RemoveTimerAction)
+    );
+    dispatch(appendTrash(timer));
+    dispatch(permRemoveTimer(id));
+    dispatch(displayUndo());
+  };
+}
+
 type EditTimerAction = {
   type: "TIMER_EDIT",
   payload: {
@@ -145,9 +146,9 @@ export function undoTimer(): UndoTimerAction {
 export type TimerAction =
   | AddTimerAction
   | GenerateTimerAction
-  | RemoveTimerAction
   | PermRemoveTimerAction
   | TickTimerAction
   | StartTimerAction
   | StopTimerAction
+  | RemoveTimerAction
   | EditTimerAction;
