@@ -1,7 +1,13 @@
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const merge = require("webpack-merge");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 const baseConfig = require("./webpack.config");
+
+const plugins = [new ExtractTextPlugin("style.css")];
+if (process.env.ANALYZE) {
+  plugins.push(new BundleAnalyzerPlugin());
+}
 
 module.exports = merge.smart(baseConfig, {
   module: {
@@ -77,5 +83,5 @@ module.exports = merge.smart(baseConfig, {
     ]
   },
 
-  plugins: [new ExtractTextPlugin("style.css")]
+  plugins
 });

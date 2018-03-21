@@ -7,6 +7,7 @@
     "build": "webpack --config webpack.config.dev.js --mode development",
     "prod": "webpack --config webpack.config.prod.js --mode production",
     "dev": "webpack-dev-server --config webpack.config.dev.js --mode development",
+    "analyze": "cross-env ANALYZE=true webpack --config webpack.config.prod.js --mode production",
     "lint": "eslint --cache --format=node_modules/eslint-formatter-pretty .",
     "format": "npm run lint -- --fix",
     "flow": "flow",
@@ -37,6 +38,7 @@
     "@babel/preset-react": "^7.0.0-beta.40",
     "babel-eslint": "^8.2.1",
     "babel-loader": "8.0.0-beta.2",
+    "cross-env": "^5.1.4",
     "css-loader": "^0.28.10",
     "eslint": "^4.17.0",
     "eslint-config-airbnb": "^16.1.0",
@@ -59,6 +61,7 @@
     "style-loader": "^0.20.2",
     "url-loader": "^1.0.1",
     "webpack": "^4.0.1",
+    "webpack-bundle-analyzer": "^2.11.1",
     "webpack-cli": "^2.0.9",
     "webpack-dev-server": "3.1.1",
     "webpack-merge": "^4.1.2"
