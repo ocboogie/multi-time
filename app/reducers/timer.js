@@ -10,7 +10,6 @@ export default function(state: TimerState = {}, action: Action): TimerState {
       return { ...state, [action.payload.timer.id]: action.payload.timer };
     case "TIMER_PERM_REMOVE": {
       const { id } = action.payload;
-      console.log(action);
       const editedState = { ...state };
       delete editedState[id];
       return editedState;

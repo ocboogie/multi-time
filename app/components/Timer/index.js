@@ -5,7 +5,6 @@ import type { Timer as TimerType, ModTimer } from "../../types/Timer";
 import Title from "./Title";
 import TimeDisplay from "./TimeDisplay";
 import Actions from "./Actions";
-
 import TimerContainer from "./indexStyles";
 
 export type Props = {

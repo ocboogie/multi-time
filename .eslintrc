@@ -11,7 +11,14 @@
   "extends": ["airbnb", "prettier"],
   "rules": {
     "prettier/prettier": "error",
-    "react/jsx-filename-extension": "off"
+    "react/jsx-filename-extension": "off",
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always",
+        "groups": ["builtin", "external", ["sibling", "parent"], "index"]
+      }
+    ]
   },
   "plugins": ["import", "react", "prettier", "flowtype"],
   "settings": {
