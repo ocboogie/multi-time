@@ -62,10 +62,12 @@ export function removeTimer(id: string) {
     if (!timer) {
       return;
     }
-    dispatch({
-      type: "TIMER_REMOVE",
-      id
-    });
+    dispatch(
+      ({
+        type: "TIMER_REMOVE",
+        payload: { id }
+      }: RemoveTimerAction)
+    );
     dispatch(appendTrash(timer));
     dispatch(permRemoveTimer(id));
     dispatch(displayUndo());
