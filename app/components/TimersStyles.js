@@ -14,4 +14,11 @@ export const Item = styled.div`
   margin: 10px;
 `;
 
+export const Empty = styled.div`
+  text-align: center;
+  margin-top: 25px;
+  font-size: 1.5rem;
+  color: rgba(0, 0, 0, 0.5);
+`;
+
 export default TimersContainer;
