@@ -13,11 +13,13 @@ import "./style";
 
 const store: Store = configureStore();
 
-store.dispatch(generateTimer({ name: "first" }));
-store.dispatch(generateTimer({ name: "second" }));
-store.dispatch(generateTimer({ name: "third" }));
-store.dispatch(generateTimer({ name: "forth" }));
-store.dispatch(generateTimer({ name: "fifth" }));
+if (process.env.NODE_ENV === "development") {
+  store.dispatch(generateTimer({ name: "first" }));
+  store.dispatch(generateTimer({ name: "second" }));
+  store.dispatch(generateTimer({ name: "third" }));
+  store.dispatch(generateTimer({ name: "forth" }));
+  store.dispatch(generateTimer({ name: "fifth" }));
+}
 
 // $FlowFixMe
 render(<Root store={store} />, document.getElementById("root"));
