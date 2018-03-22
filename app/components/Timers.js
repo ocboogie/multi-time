@@ -11,7 +11,6 @@ export type Props = {
   play: (id: string) => void,
   pause: (id: string) => void,
   delete: (id: string) => void,
-  popTrash: () => void,
   editTimer: (id: string, modification: ModTimer) => void
 };
 
@@ -25,7 +24,6 @@ export default (props: Props) => {
           play={props.play}
           pause={props.pause}
           delete={props.delete}
-          popTrash={props.popTrash}
           editTimer={props.editTimer}
           timer={timer}
         />
