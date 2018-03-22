@@ -1,14 +1,16 @@
-// @flow
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import Add from "../components/Add";
 import { generateTimer } from "../actions/timer";
+import type { Dispatch } from "../types/Store";
 
-function mapDispatchToProps(dispatch) {
-  return {
-    click: bindActionCreators(generateTimer, dispatch)
-  };
-}
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators(
+    {
+      click: generateTimer
+    },
+    dispatch
+  );
 
 export default connect(() => ({}), mapDispatchToProps)(Add);

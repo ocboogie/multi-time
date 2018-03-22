@@ -1,30 +1,29 @@
-// @flow
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import Timers from "../components/Timers";
-import type { Props } from "../components/Timers";
-import type { State } from "../types/State";
 import {
   startTimer,
   stopTimer,
   removeTimer,
   editTimer
 } from "../actions/timer";
+import type { State } from "../types/State";
+import type { Dispatch } from "../types/Store";
 
-function mapStateToProps(state: State): Props {
-  return {
-    timers: state.timer
-  };
-}
+const mapStateToProps = ({ timer }: State) => ({
+  timers: timer
+});
 
-function mapDispatchToProps(dispatch) {
-  return {
-    play: bindActionCreators(startTimer, dispatch),
-    pause: bindActionCreators(stopTimer, dispatch),
-    delete: bindActionCreators(removeTimer, dispatch),
-    editTimer: bindActionCreators(editTimer, dispatch)
-  };
-}
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators(
+    {
+      play: startTimer,
+      pause: stopTimer,
+      delete: removeTimer,
+      editTimer
+    },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Timers);
