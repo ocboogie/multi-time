@@ -7,7 +7,7 @@ import type { State } from "./types/State";
 import type { Store } from "./types/Store";
 
 // eslint-disable-next-line import/prefer-default-export
-export function configureStore(initialState: State): Store {
+export function configureStore(initialState?: State): Store {
   const middleware = [];
 
   // Thunk Middleware
