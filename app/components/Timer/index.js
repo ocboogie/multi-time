@@ -7,13 +7,13 @@ import TimeDisplay from "./TimeDisplay";
 import Actions from "./Actions";
 import TimerContainer from "./indexStyles";
 
-export type Props = {
+export type Props = {|
   timer: TimerType,
   play: (id: string) => void,
   pause: (id: string) => void,
   delete: (id: string) => void,
   editTimer: (id: string, modification: ModTimer) => void
-};
+|};
 
 export type State = {
   editableTitle: boolean

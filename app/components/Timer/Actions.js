@@ -7,10 +7,10 @@ import faTrashAlt from "@fortawesome/fontawesome-free-solid/faTrashAlt";
 
 import ActionsContainer from "./ActionsStyles";
 
-export type Props = {
+export type Props = {|
   delete: () => void,
   edit: () => void
-};
+|};
 
 export default class Actions extends Component<Props> {
   componentDidMount() {

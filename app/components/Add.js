@@ -5,9 +5,9 @@ import faPlus from "@fortawesome/fontawesome-free-solid/faPlus";
 
 import AddFab from "./AddStyles";
 
-export type Props = {
+export type Props = {|
   click: () => void
-};
+|};
 
 export default ({ click }: Props) => (
   <div className="fixed-action-btn">

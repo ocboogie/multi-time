@@ -7,7 +7,7 @@ import faPause from "@fortawesome/fontawesome-free-solid/faPause";
 
 import TitleContainer, { PauseFab, PlayFab, TitleEdit } from "./TitleStyles";
 
-export type Props = {
+export type Props = {|
   title: string,
   paused: boolean,
   editable: boolean,
@@ -15,7 +15,7 @@ export type Props = {
   pause: () => void,
   changeTitle: (title: string) => void,
   cancelEdit: () => void
-};
+|};
 
 export type State = { title: string };
 

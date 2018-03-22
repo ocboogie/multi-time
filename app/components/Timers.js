@@ -6,13 +6,13 @@ import type { TimerState } from "../reducers/timer";
 import type { Timer as TimerType, ModTimer } from "../types/Timer";
 import TimersContainer, { Item } from "./TimersStyles";
 
-export type Props = {
+export type Props = {|
   timers: TimerState,
   play: (id: string) => void,
   pause: (id: string) => void,
   delete: (id: string) => void,
   editTimer: (id: string, modification: ModTimer) => void
-};
+|};
 
 export default (props: Props) => {
   // See https://github.com/facebook/flow/issues/2221
