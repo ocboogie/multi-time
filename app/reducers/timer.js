@@ -14,17 +14,6 @@ export default function(state: TimerState = {}, action: Action): TimerState {
       delete editedState[id];
       return editedState;
     }
-    case "TIMER_TICK": {
-      const { id } = action.payload;
-      const tickedState = { ...state };
-      const timer = tickedState[id];
-      if (timer) {
-        timer.time += 1;
-      }
-      // Once I can use optional chaining:
-      // tickedState[id]?.time += 1;
-      return tickedState;
-    }
     case "TIMER_EDIT": {
       const { id, modification } = action.payload;
       const editedState = { ...state };
@@ -35,18 +24,40 @@ export default function(state: TimerState = {}, action: Action): TimerState {
       return editedState;
     }
     case "TIMER_START": {
-      const { id } = action.payload;
+      const { id, baseTime, now } = action.payload;
       const editedState = { ...state };
-      if (Object.prototype.hasOwnProperty.call(editedState, id)) {
-        editedState[id].paused = false;
+      const timer = editedState[id];
+      if (timer) {
+        timer.timing = {
+          baseTime,
+          startedAt: now,
+          paused: false
+        };
       }
       return editedState;
     }
     case "TIMER_STOP": {
-      const { id } = action.payload;
+      const { id, now } = action.payload;
       const editedState = { ...state };
-      if (Object.prototype.hasOwnProperty.call(editedState, id)) {
-        editedState[id].paused = true;
+      const timer = editedState[id];
+      if (timer) {
+        Object.assign(timer.timing, {
+          stoppedAt: now,
+          paused: true
+        });
+      }
+      return editedState;
+    }
+    case "TIMER_RESET": {
+      const { id, now } = action.payload;
+      const editedState = { ...state };
+      const timer = editedState[id];
+      if (timer) {
+        timer.timing = {
+          baseTime: 0,
+          startedAt: timer.timing.startedAt ? now : undefined,
+          stoppedAt: timer.timing.stoppedAt ? now : undefined
+        };
       }
       return editedState;
     }

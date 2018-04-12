@@ -9,7 +9,7 @@ import TimerContainer from "./indexStyles";
 
 export type Props = {|
   timer: TimerType,
-  play: (id: string) => void,
+  play: (id: string, baseTime: number) => void,
   pause: (id: string) => void,
   delete: (id: string) => void,
   editTimer: (id: string, modification: ModTimer) => void
@@ -19,12 +19,34 @@ export type State = {
   editableTitle: boolean
 };
 
+function getElapsedTime(
+  baseTime: number,
+  startedAt: number,
+  stoppedAt = new Date().getTime()
+) {
+  if (!startedAt) {
+    return 0;
+  }
+  return stoppedAt - startedAt + baseTime;
+}
+
 export default class Timer extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
     this.state = { editableTitle: props.timer.name === null };
   }
+
+  componentDidMount() {
+    this.interval = setInterval(this.forceUpdate.bind(this), 33);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  // eslint-disable-next-line no-undef
+  interval: IntervalID;
 
   handleDelete = () => {
     this.props.delete(this.props.timer.id);
@@ -39,27 +61,33 @@ export default class Timer extends Component<Props, State> {
   };
 
   render() {
+    const { timer } = this.props;
+
+    const elapsed = getElapsedTime(
+      timer.timing.baseTime,
+      timer.timing.startedAt,
+      timer.timing.stoppedAt
+    );
+
     return (
       <TimerContainer className="card">
         <div className="card-image">
           <Title
-            play={() => this.props.play(this.props.timer.id)}
+            play={() => this.props.play(timer.id, elapsed)}
             pause={
-              () => this.props.pause(this.props.timer.id) // Could be slow performance-wise
+              () => this.props.pause(timer.id) // Could be slow performance-wise
             }
-            paused={
-              this.props.timer.paused // this as well
-            }
-            title={this.props.timer.name || ""}
+            paused={timer.timing.paused}
+            title={timer.name || ""}
             changeTitle={(title: string) =>
-              this.props.editTimer(this.props.timer.id, { name: title })
+              this.props.editTimer(timer.id, { name: title })
             }
             editable={this.state.editableTitle}
             cancelEdit={this.handleEditCancel}
           />
         </div>
         <div className="card-content">
-          <TimeDisplay time={this.props.timer.time} />
+          <TimeDisplay time={elapsed} />
         </div>
         <div className="card-action">
           <Actions delete={this.handleDelete} edit={this.handleEdit} />

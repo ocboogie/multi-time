@@ -1,15 +1,22 @@
+type Timing = {|
+  startedAt: number,
+  stoppedAt: number,
+  baseTime: number,
+  paused: boolean
+|};
+
 // @flow
 export type Timer = {
   name: string | null,
   time: number,
-  paused: boolean,
-  id: string
+  id: string,
+  timing: Timing
 };
 
 export type ModTimer = {
   // $FlowIssue
   name?: string | null,
   time?: number,
-  paused?: boolean,
-  id?: string
+  id?: string,
+  timing?: Timing
 };

@@ -1,17 +1,13 @@
 // @flow
 import React from "react";
 
-import Timer from "./Timer";
+import Timer from "../containers/Timer";
 import type { TimerState } from "../reducers/timer";
-import type { Timer as TimerType, ModTimer } from "../types/Timer";
+import type { Timer as TimerType } from "../types/Timer";
 import TimersContainer, { Item, Empty } from "./TimersStyles";
 
 export type Props = {|
-  timers: TimerState,
-  play: (id: string) => void,
-  pause: (id: string) => void,
-  delete: (id: string) => void,
-  editTimer: (id: string, modification: ModTimer) => void
+  timers: TimerState
 |};
 
 export default (props: Props) => {
@@ -28,13 +24,7 @@ export default (props: Props) => {
     .sort((a: TimerType, b: TimerType) => a.name.localeCompare(b.name)) // $FlowIssue
     .map((timer: TimerType) => (
       <Item key={timer.id}>
-        <Timer
-          play={props.play}
-          pause={props.pause}
-          delete={props.delete}
-          editTimer={props.editTimer}
-          timer={timer}
-        />
+        <Timer id={timer.id} />
       </Item>
     ));
 

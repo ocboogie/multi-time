@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import Timers from "../components/Timers";
+import Timer from "../components/Timer";
 import {
   startTimer,
   stopTimer,
@@ -9,14 +9,14 @@ import {
   editTimer
 } from "../actions/timer";
 import type { State } from "../types/State";
-import type { Timer } from "../types/Timer";
 import type { Dispatch } from "../types/Store";
 
-const mapStateToProps = ({ timer: timerState }: State) => ({
-  timers: Object.values(timerState).map((timer: Timer) => ({
-    name: timer.name,
-    id: timer.id
-  }))
+export type Props = {|
+  id: string
+|};
+
+const mapStateToProps = ({ timer }: State, { id }: Props) => ({
+  timer: timer[id]
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
@@ -30,4 +30,4 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Timers);
+export default connect(mapStateToProps, mapDispatchToProps)(Timer);

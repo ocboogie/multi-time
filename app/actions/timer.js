@@ -30,9 +30,8 @@ export function generateTimer(timer: ModTimer) {
     );
     const timerGen: Timer = {
       name: null,
-      time: 0,
-      paused: true,
       id: uuid(),
+      timing: { paused: true },
       ...timer
     };
 
@@ -62,34 +61,40 @@ export function tickTimer(id: string): TickTimerAction {
   };
 }
 
-const timers = Object.create(null);
 type StartTimerAction = {
   type: "TIMER_START",
-  payload: { id: string }
+  payload: { id: string, baseTime: number, now: number }
 };
-export function startTimer(id: string) {
-  return (dispatch: Dispatch) => {
-    clearInterval(timers[id]);
-    timers[id] = setInterval(() => dispatch(tickTimer(id)), 1000);
-    dispatch({
-      type: "TIMER_START",
-      payload: { id }
-    });
-    dispatch(tickTimer(id));
+export function startTimer(id: string, baseTime: number): StartTimerAction {
+  return {
+    type: "TIMER_START",
+    payload: { id, baseTime, now: new Date().getTime() }
   };
 }
 
 type StopTimerAction = {
   type: "TIMER_STOP",
-  payload: { id: string }
+  payload: { id: string, now: number }
 };
-export function stopTimer(id: string) {
-  return (dispatch: Dispatch) => {
-    clearInterval(timers[id]);
-    dispatch({
-      type: "TIMER_STOP",
-      payload: { id }
-    });
+export function stopTimer(id: string): StopTimerAction {
+  return {
+    type: "TIMER_STOP",
+    payload: { id, now: new Date().getTime() }
+  };
+}
+
+// Currently not in use
+type ResetTimerAction = {
+  type: "TIMER_RESET",
+  payload: { id: string, now: number }
+};
+export function resetTimer(id: string): ResetTimerAction {
+  return {
+    type: "TIMER_RESET",
+    payload: {
+      id,
+      now: new Date().getTime()
+    }
   };
 }
 
@@ -141,5 +146,6 @@ export type TimerAction =
   | TickTimerAction
   | StartTimerAction
   | StopTimerAction
+  | ResetTimerAction
   | RemoveTimerAction
   | EditTimerAction;

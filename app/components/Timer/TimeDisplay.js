@@ -7,4 +7,6 @@ export type Props = {|
   time: number
 |};
 
-export default (props: Props) => <TimeDisplay>{props.time}</TimeDisplay>;
+export default (props: Props) => (
+  <TimeDisplay>{(props.time / 1000).toFixed(2)}</TimeDisplay>
+);
