@@ -86,14 +86,13 @@ export function stopTimer(id: string): StopTimerAction {
 // Currently not in use
 type ResetTimerAction = {
   type: "TIMER_RESET",
-  payload: { id: string, now: number }
+  payload: { id: string }
 };
 export function resetTimer(id: string): ResetTimerAction {
   return {
     type: "TIMER_RESET",
     payload: {
-      id,
-      now: new Date().getTime()
+      id
     }
   };
 }

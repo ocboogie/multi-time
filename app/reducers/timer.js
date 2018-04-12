@@ -49,14 +49,13 @@ export default function(state: TimerState = {}, action: Action): TimerState {
       return editedState;
     }
     case "TIMER_RESET": {
-      const { id, now } = action.payload;
+      const { id } = action.payload;
       const editedState = { ...state };
       const timer = editedState[id];
       if (timer) {
         timer.timing = {
           baseTime: 0,
-          startedAt: timer.timing.startedAt ? now : undefined,
-          stoppedAt: timer.timing.stoppedAt ? now : undefined
+          paused: true
         };
       }
       return editedState;
