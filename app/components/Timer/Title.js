@@ -51,12 +51,12 @@ export default class Title extends Component<Props, State> {
     }
   };
 
-  render() {
-    // eslint-disable-next-line no-undef
-    const handleFocus = (event: SyntheticInputEvent<HTMLInputElement>) => {
-      event.target.select();
-    };
+  // eslint-disable-next-line no-undef
+  handleTitleFocus = (event: SyntheticInputEvent<HTMLInputElement>) => {
+    event.target.select();
+  };
 
+  render() {
     const pattern = geoPattern.generate(this.state.title);
 
     const Fab = this.props.paused ? (
@@ -77,7 +77,7 @@ export default class Title extends Component<Props, State> {
         onChange={this.handleTitleChange}
         onBlur={this.cancelEditing}
         onKeyPress={this.handleTitleKeyPress}
-        onFocus={handleFocus}
+        onFocus={this.handleTitleFocus}
       />
     ) : (
       this.state.title
