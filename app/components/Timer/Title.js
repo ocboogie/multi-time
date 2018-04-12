@@ -39,9 +39,16 @@ export default class Title extends Component<Props, State> {
     this.setState({ title: event.target.value });
   };
 
-  handleTitleBlur = () => {
+  cancelEditing = () => {
     this.props.cancelEdit();
     this.props.changeTitle(this.state.title);
+  };
+
+  // eslint-disable-next-line no-undef
+  handleTitleKeyPress = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      this.cancelEditing();
+    }
   };
 
   render() {
@@ -68,7 +75,8 @@ export default class Title extends Component<Props, State> {
         type="text"
         value={this.state.title}
         onChange={this.handleTitleChange}
-        onBlur={this.handleTitleBlur}
+        onBlur={this.cancelEditing}
+        onKeyPress={this.handleTitleKeyPress}
         onFocus={handleFocus}
       />
     ) : (
