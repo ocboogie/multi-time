@@ -4,12 +4,14 @@ import $ from "jquery";
 import FontAwesomeIcon from "@fortawesome/react-fontawesome";
 import faEdit from "@fortawesome/fontawesome-free-solid/faEdit";
 import faTrashAlt from "@fortawesome/fontawesome-free-solid/faTrashAlt";
+import faRedo from "@fortawesome/fontawesome-free-solid/faRedo";
 
 import ActionsContainer from "./ActionsStyles";
 
 export type Props = {|
-  delete: () => void,
-  edit: () => void
+  edit: () => void,
+  reset: () => void,
+  delete: () => void
 |};
 
 export default class Actions extends Component<Props> {
@@ -36,6 +38,15 @@ export default class Actions extends Component<Props> {
           data-tooltip="Edit"
           size="lg"
           icon={faEdit}
+        />
+        <FontAwesomeIcon
+          onClick={this.props.reset}
+          className="action-tooltipped"
+          data-position="bottom"
+          data-delay="25"
+          data-tooltip="Reset"
+          size="lg"
+          icon={faRedo}
         />
         <FontAwesomeIcon
           onClick={this.props.delete}

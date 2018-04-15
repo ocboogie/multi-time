@@ -8,6 +8,7 @@ import {
   removeTimer,
   editTimer
 } from "../actions/timer";
+import { displayResetConfirmModal } from "../actions/modal";
 import type { State } from "../types/State";
 import type { Dispatch } from "../types/Store";
 
@@ -25,6 +26,7 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
       play: startTimer,
       pause: stopTimer,
       delete: removeTimer,
+      displayResetConfirm: displayResetConfirmModal,
       editTimer
     },
     dispatch

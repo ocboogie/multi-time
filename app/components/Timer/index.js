@@ -12,7 +12,8 @@ export type Props = {|
   play: (id: string, baseTime: number) => void,
   pause: (id: string) => void,
   delete: (id: string) => void,
-  editTimer: (id: string, modification: ModTimer) => void
+  editTimer: (id: string, modification: ModTimer) => void,
+  displayResetConfirm: (id: string) => void
 |};
 
 export type State = {
@@ -50,6 +51,10 @@ export default class Timer extends Component<Props, State> {
 
   handleDelete = () => {
     this.props.delete(this.props.timer.id);
+  };
+
+  handleReset = () => {
+    this.props.displayResetConfirm(this.props.timer.id);
   };
 
   handleEdit = () => {
@@ -90,7 +95,11 @@ export default class Timer extends Component<Props, State> {
           <TimeDisplay time={elapsed} />
         </div>
         <div className="card-action">
-          <Actions delete={this.handleDelete} edit={this.handleEdit} />
+          <Actions
+            edit={this.handleEdit}
+            reset={this.handleReset}
+            delete={this.handleDelete}
+          />
         </div>
       </TimerContainer>
     );

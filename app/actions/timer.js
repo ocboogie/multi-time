@@ -83,7 +83,6 @@ export function stopTimer(id: string): StopTimerAction {
   };
 }
 
-// Currently not in use
 type ResetTimerAction = {
   type: "TIMER_RESET",
   payload: { id: string }
