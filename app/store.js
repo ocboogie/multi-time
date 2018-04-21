@@ -1,5 +1,5 @@
 // @flow
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 
 import rootReducer from "./reducers";
@@ -12,6 +12,10 @@ export function configureStore(initialState?: State): Store {
 
   // Thunk Middleware
   middleware.push(thunk);
+
+  const composeEnhancers =
+    /* eslint-disable-next-line no-underscore-dangle */
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
   // Add redux-logger if in development
   if (process.env.NODE_ENV === "development") {
@@ -30,7 +34,7 @@ export function configureStore(initialState?: State): Store {
   const store: Store = createStore(
     rootReducer,
     initialState,
-    applyMiddleware(...middleware)
+    composeEnhancers(applyMiddleware(...middleware))
   );
 
   return store;
