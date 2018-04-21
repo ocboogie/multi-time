@@ -27,6 +27,8 @@
     "geopattern": "^1.2.3",
     "jquery": "^3.3.1",
     "materialize-css": "^0.100.2",
+    "moment": "^2.22.1",
+    "moment-duration-format": "^2.2.2",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-redux": "^5.0.7",

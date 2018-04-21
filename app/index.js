@@ -1,6 +1,8 @@
 // @flow
 import React from "react";
 import { render } from "react-dom";
+import momentDurationFormatSetup from "moment-duration-format";
+import moment from "moment";
 import "@fortawesome/fontawesome";
 import "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
@@ -12,6 +14,8 @@ import type { Store } from "./types/Store";
 import "./style";
 
 const store: Store = configureStore();
+
+momentDurationFormatSetup(moment);
 
 if (process.env.NODE_ENV === "development") {
   store.dispatch(generateTimer({ name: "first" }));
