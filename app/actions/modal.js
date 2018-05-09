@@ -25,5 +25,17 @@ export function displayResetConfirmModal(
   };
 }
 
-export type ModalAction = DisplayResetConfirmModalAction;
+type DisplayLoginModalAction = {
+  type: "MODAL_DISPLAY_LOGIN",
+  payload: DisplayResetConfirmModalPayload
+};
+export function displayLoginModal(): DisplayResetConfirmModalAction {
+  return {
+    type: "MODAL_DISPLAY_LOGIN"
+  };
+}
+
+export type ModalAction =
+  | DisplayResetConfirmModalAction
+  | DisplayLoginModalAction;
 export type ModalPayloads = DisplayResetConfirmModalPayload;

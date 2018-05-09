@@ -24,18 +24,22 @@
     "@fortawesome/fontawesome": "^1.1.5",
     "@fortawesome/fontawesome-free-solid": "^5.0.10",
     "@fortawesome/react-fontawesome": "^0.0.18",
+    "english-list": "^1.0.0",
+    "firebase": "^4.13.1",
     "geopattern": "^1.2.3",
     "jquery": "^3.3.1",
     "materialize-css": "^0.100.2",
     "moment": "^2.22.1",
     "moment-duration-format": "^2.2.2",
+    "password-validator": "^4.1.1",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-redux": "^5.0.7",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "styled-components": "^3.2.5",
-    "uuid": "^3.2.1"
+    "uuid": "^3.2.1",
+    "validator": "^9.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.44",

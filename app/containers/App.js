@@ -5,6 +5,7 @@ import Hero from "../components/Hero";
 import Add from "../containers/Add";
 import Timers from "./Timers";
 import ResetConfirmModal from "./ResetConfirmModal";
+import LoginModal from "../containers/LoginModal";
 
 export default () => (
   // $FlowIssue
@@ -18,5 +19,6 @@ export default () => (
       <Timers />
     </div>
     <ResetConfirmModal />
+    <LoginModal />
   </>
 );

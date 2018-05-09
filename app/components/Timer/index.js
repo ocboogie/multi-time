@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 
 import type { Timer as TimerType, ModTimer } from "../../types/Timer";
+import getElapsedTime from "../../utils/getElapsedTime";
 import Title from "./Title";
 import TimeDisplay from "./TimeDisplay";
 import Actions from "./Actions";
@@ -19,17 +20,6 @@ export type Props = {|
 export type State = {
   editableTitle: boolean
 };
-
-function getElapsedTime(
-  baseTime: number,
-  startedAt: number,
-  stoppedAt = new Date().getTime()
-) {
-  if (!startedAt) {
-    return 0;
-  }
-  return stoppedAt - startedAt + baseTime;
-}
 
 export default class Timer extends Component<Props, State> {
   constructor(props: Props) {

@@ -1,18 +1,30 @@
 // @flow
+import firebase from "firebase";
 import uuid from "uuid/v4";
 
 import type { Timer, ModTimer } from "../types/Timer";
 import type { Dispatch, GetState } from "../types/Store";
 import { appendTrash, displayUndo } from "./trash";
+import timer2dbTimer from "../utils/timer2dbTimer";
 
 type AddTimerAction = {
   type: "TIMER_ADD",
   payload: { timer: Timer }
 };
-export function addTimer(timer: Timer): AddTimerAction {
-  return {
-    type: "TIMER_ADD",
-    payload: { timer }
+export function addTimer(timer: Timer) {
+  return (dispatch: Dispatch, getState: GetState) => {
+    dispatch(
+      ({
+        type: "TIMER_ADD",
+        payload: { timer }
+      }: AddTimerAction)
+    );
+    const { loggedIn } = getState();
+    if (loggedIn === "loggedin") {
+      window.db // $FlowIssue
+        .doc(`/users/${firebase.auth().currentUser.uid}/timers/${timer.id}`)
+        .set(timer2dbTimer(timer));
+    }
   };
 }
 
@@ -43,10 +55,20 @@ type PermRemoveTimerAction = {
   type: "TIMER_PERM_REMOVE",
   payload: { id: string }
 };
-export function permRemoveTimer(id: string): PermRemoveTimerAction {
-  return {
-    type: "TIMER_PERM_REMOVE",
-    payload: { id }
+export function permRemoveTimer(id: string) {
+  return (dispatch: Dispatch, getState: GetState) => {
+    dispatch(
+      ({
+        type: "TIMER_PERM_REMOVE",
+        payload: { id }
+      }: PermRemoveTimerAction)
+    );
+    const { loggedIn } = getState();
+    if (loggedIn === "loggedin") {
+      window.db // $FlowIssue
+        .doc(`/users/${firebase.auth().currentUser.uid}/timers/${id}`)
+        .delete();
+    }
   };
 }
 

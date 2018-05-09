@@ -20,3 +20,9 @@ export type ModTimer = {
   id?: string,
   timing?: Timing
 };
+
+export type DbTimer = {
+  name: string,
+  id: string,
+  elapsed: number
+};
