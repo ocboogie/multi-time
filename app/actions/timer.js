@@ -72,17 +72,6 @@ export function permRemoveTimer(id: string) {
   };
 }
 
-type TickTimerAction = {
-  type: "TIMER_TICK",
-  payload: { id: string }
-};
-export function tickTimer(id: string): TickTimerAction {
-  return {
-    type: "TIMER_TICK",
-    payload: { id }
-  };
-}
-
 type StartTimerAction = {
   type: "TIMER_START",
   payload: { id: string, baseTime: number, now: number }
@@ -163,7 +152,6 @@ export type TimerAction =
   | AddTimerAction
   | GenerateTimerAction
   | PermRemoveTimerAction
-  | TickTimerAction
   | StartTimerAction
   | StopTimerAction
   | ResetTimerAction
