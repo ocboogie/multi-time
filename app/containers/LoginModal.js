@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import { closeModal } from "../actions/modal";
-import { loggingIn } from "../actions/loggedIn";
+import { loggingIn } from "../actions/auth";
 import LoginModal from "../components/LoginModal";
 import type { State } from "../types/State";
 import type { Dispatch } from "../types/Store";

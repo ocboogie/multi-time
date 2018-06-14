@@ -19,8 +19,8 @@ export function addTimer(timer: Timer) {
         payload: { timer }
       }: AddTimerAction)
     );
-    const { loggedIn } = getState();
-    if (loggedIn === "loggedin") {
+    const { auth } = getState();
+    if (auth === "loggedin") {
       window.db // $FlowIssue
         .doc(`/users/${firebase.auth().currentUser.uid}/timers/${timer.id}`)
         .set(timer2dbTimer(timer));
@@ -63,8 +63,8 @@ export function permRemoveTimer(id: string) {
         payload: { id }
       }: PermRemoveTimerAction)
     );
-    const { loggedIn } = getState();
-    if (loggedIn === "loggedin") {
+    const { auth } = getState();
+    if (auth === "loggedin") {
       window.db // $FlowIssue
         .doc(`/users/${firebase.auth().currentUser.uid}/timers/${id}`)
         .delete();

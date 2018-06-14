@@ -2,18 +2,18 @@
 
 import type { Action } from "../types/Action";
 
-export type LoggedInState = "loggingin" | "loggedin" | "loggedout";
+export type AuthState = "loggingin" | "loggedin" | "loggedout";
 
 export default function(
-  state: LoggedInState = "loggedout",
+  state: AuthState = "loggedout",
   action: Action
-): LoggedInState {
+): AuthState {
   switch (action.type) {
-    case "LOGGEDIN_LOGGINGIN":
+    case "AUTH_LOGGINGIN":
       return "loggingin";
-    case "LOGGEDIN_LOGIN":
+    case "AUTH_LOGIN":
       return "loggedin";
-    case "LOGGEDIN_SIGN_OUT":
+    case "AUTH_SIGN_OUT":
       return "loggedout";
     default:
       return state;

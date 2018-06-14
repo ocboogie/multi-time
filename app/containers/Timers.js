@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import Timers from "../components/Timers";
 import type { State } from "../types/State";
 
-const mapStateToProps = ({ loggedIn, timer: timerState }: State) => ({
-  loggedIn,
+const mapStateToProps = ({ auth, timer: timerState }: State) => ({
+  authState: auth,
   timers: timerState
 });
 

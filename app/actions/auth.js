@@ -8,12 +8,12 @@ import type { Dispatch, GetState } from "../types/Store";
 // eslint-disable-next-line no-undef
 let uploadInterval: IntervalID;
 
-type LoginLoggedInAction = {
-  type: "LOGGEDIN_LOGIN"
+type LoginAuthAction = {
+  type: "AUTH_LOGIN"
 };
 export function login() {
   return (dispatch: Dispatch, getState: GetState) => {
-    dispatch(({ type: "LOGGEDIN_LOGIN" }: LoginLoggedInAction));
+    dispatch(({ type: "AUTH_LOGIN" }: LoginAuthAction));
     const user = firebase.auth().currentUser;
     uploadInterval = setInterval(() => {
       Object.values(getState().timer).forEach(timer => {
@@ -25,32 +25,32 @@ export function login() {
   };
 }
 
-type SignOutLoggedInAction = {
-  type: "LOGGEDIN_SIGN_OUT"
+type SignOutAuthAction = {
+  type: "AUTH_SIGN_OUT"
 };
-export function signOut(): SignOutLoggedInAction {
+export function signOut(): SignOutAuthAction {
   return (dispatch: Dispatch, getState: GetState) => {
     clearInterval(uploadInterval);
-    if (getState().loggedIn !== "loggedout") {
+    if (getState().auth !== "loggedout") {
       firebase.auth().signOut();
     }
     dispatch(
       ({
-        type: "LOGGEDIN_SIGN_OUT"
-      }: SignOutLoggedInAction)
+        type: "AUTH_SIGN_OUT"
+      }: SignOutAuthAction)
     );
   };
 }
 
-type LoginLoggingInAction = {
-  type: "LOGGEDIN_LOGGINGIN"
+type LoggingInAuthAction = {
+  type: "AUTH_LOGGINGIN"
 };
 export function loggingIn() {
   return (dispatch: Dispatch) => {
     dispatch(
       ({
-        type: "LOGGEDIN_LOGGINGIN"
-      }: LoginLoggingInAction)
+        type: "AUTH_LOGGINGIN"
+      }: LoggingInAuthAction)
     );
     const user = firebase.auth().currentUser;
 
@@ -73,7 +73,4 @@ export function loggingIn() {
   };
 }
 
-export type LoggedInAction =
-  | LoginLoggedInAction
-  | SignOutLoggedInAction
-  | LoginLoggingInAction;
+export type AuthAction = LoginAuthAction | SignOutAuthAction | LoginAuthAction;

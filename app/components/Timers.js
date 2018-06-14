@@ -4,19 +4,19 @@ import React from "react";
 import Timer from "../containers/Timer";
 import TimersContainer, { Item, Empty } from "./TimersStyles";
 import type { TimerState } from "../reducers/timer";
-import type { LoggedInState } from "../reducers/loggedIn";
+import type { AuthState } from "../reducers/auth";
 import type { Timer as TimerType } from "../types/Timer";
 
 export type Props = {|
   timers: TimerState,
-  loggedIn: LoggedInState
+  authState: AuthState
 |};
 
 export default (props: Props) => {
-  if (props.loggedIn === "loggedout") {
+  if (props.authState === "loggedout") {
     return <Empty>You aren&apos;t logged in!</Empty>;
   }
-  if (props.loggedIn === "loggingin") {
+  if (props.authState === "loggingin") {
     return <Empty>Loading...</Empty>;
   }
   if (Object.values(props.timers).length === 0) {
