@@ -11,7 +11,7 @@ import "materialize-css/dist/css/materialize.min.css";
 
 import Root from "./containers/Root";
 import { configureStore } from "./store";
-import { displayLoginModal } from "./actions/modal";
+import { loggingIn, signOut } from "./actions/auth";
 import type { Store } from "./types/Store";
 import "./style";
 
@@ -36,5 +36,13 @@ window.db = db;
 // $FlowFixMe
 render(<Root store={store} />, document.getElementById("root"));
 
-// Do not commit this
-store.dispatch(displayLoginModal());
+firebase.auth().onAuthStateChanged(user => {
+  const state = store.getState();
+  if (user) {
+    if (state.auth !== "loggingin") {
+      store.dispatch(loggingIn());
+    }
+  } else if (state.auth !== "loggedout") {
+    store.dispatch(signOut());
+  }
+});
