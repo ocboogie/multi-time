@@ -33,9 +33,7 @@ export default class LoginModal extends Component<Props, State> {
     $("#login_modal_tabs").tabs();
     // $FlowIssue
     $("#login_modal").modal({
-      onCloseStart: () => {
-        this.props.close();
-      }
+      complete: this.props.close
     });
   }
 
