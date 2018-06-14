@@ -29,9 +29,16 @@ type SignOutLoggedInAction = {
   type: "LOGGEDIN_SIGN_OUT"
 };
 export function signOut(): SignOutLoggedInAction {
-  clearInterval(uploadInterval);
-  return {
-    type: "LOGGEDIN_SIGN_OUT"
+  return (dispatch: Dispatch, getState: GetState) => {
+    clearInterval(uploadInterval);
+    if (getState().loggedIn !== "loggedout") {
+      firebase.auth().signOut();
+    }
+    dispatch(
+      ({
+        type: "LOGGEDIN_SIGN_OUT"
+      }: SignOutLoggedInAction)
+    );
   };
 }
 
