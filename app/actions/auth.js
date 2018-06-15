@@ -28,7 +28,7 @@ export function login() {
 type SignOutAuthAction = {
   type: "AUTH_SIGN_OUT"
 };
-export function signOut(): SignOutAuthAction {
+export function signOut() {
   return (dispatch: Dispatch, getState: GetState) => {
     clearInterval(uploadInterval);
     if (getState().auth !== "loggedout") {
