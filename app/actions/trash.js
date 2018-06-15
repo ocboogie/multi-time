@@ -26,7 +26,7 @@ export function popTrash() {
     dispatch({
       type: "TRASH_POP"
     });
-    dispatch(addTimer(state.trash[state.trash.length - 1]));
+    dispatch(addTimer(state.trash[state.trash.length - 1], true));
   };
 }
 
