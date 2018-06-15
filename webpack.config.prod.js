@@ -10,6 +10,7 @@ if (process.env.ANALYZE) {
 }
 
 module.exports = merge.smart(baseConfig, {
+  mode: "production",
   module: {
     rules: [
       // Extract all .css to style.css as is

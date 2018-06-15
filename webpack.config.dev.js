@@ -5,6 +5,7 @@ const baseConfig = require("./webpack.config");
 const port = process.env.PORT || 8080;
 
 module.exports = merge.smart(baseConfig, {
+  mode: "development",
   module: {
     rules: [
       {
