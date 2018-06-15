@@ -25,7 +25,7 @@ export function addTimer(timer: Timer, shouldUpload: boolean = true) {
     const { auth } = getState();
     if (auth === "loggedin") {
       window.db // $FlowIssue
-        .doc(`/users/${firebase.auth().currentUser.uid}/timers/${timer}`)
+        .doc(`/users/${firebase.auth().currentUser.uid}/timers/${timer.id}`)
         .set(timer2dbTimer(timer));
     }
   };
