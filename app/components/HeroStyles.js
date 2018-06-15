@@ -3,9 +3,9 @@ import styled from "styled-components";
 const Hero = styled.div`
   margin: 15px auto;
   padding: 0 20px;
-  text-align: center;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   /* Mobile */
   @media (max-width: 700px) {
     flex-direction: column;
@@ -20,4 +20,8 @@ export const Logo = styled.h2`
   font-size: 4.5rem;
   font-weight: 300;
   line-height: 1.1;
+`;
+
+export const Login = styled.div`
+  float: right;
 `;

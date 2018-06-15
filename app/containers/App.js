@@ -1,9 +1,9 @@
 // @flow
 import React from "react";
 
-import Hero from "../components/Hero";
 import Add from "../containers/Add";
 import Timers from "./Timers";
+import Hero from "./Hero";
 import ResetConfirmModal from "./ResetConfirmModal";
 import LoginModal from "../containers/LoginModal";
 
