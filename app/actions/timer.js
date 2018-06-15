@@ -11,21 +11,11 @@ type AddTimerAction = {
   type: "TIMER_ADD",
   payload: { timer: Timer }
 };
-export function addTimer(timer: Timer) {
-  return (dispatch: Dispatch, getState: GetState) => {
-    dispatch(
-      ({
-        type: "TIMER_ADD",
-        payload: { timer }
-      }: AddTimerAction)
-    );
-    const { auth } = getState();
-    if (auth === "loggedin") {
-      window.db // $FlowIssue
-        .doc(`/users/${firebase.auth().currentUser.uid}/timers/${timer.id}`)
-        .set(timer2dbTimer(timer));
-    }
-  };
+export function addTimer(timer: Timer): AddTimerAction {
+  return ({
+    type: "TIMER_ADD",
+    payload: { timer }
+  }: AddTimerAction);
 }
 
 type GenerateTimerAction = {
@@ -138,12 +128,22 @@ type EditTimerAction = {
     modification: ModTimer
   }
 };
-export function editTimer(id: string, modification: ModTimer): EditTimerAction {
-  return {
-    type: "TIMER_EDIT",
-    payload: {
-      id,
-      modification
+export function editTimer(id: string, modification: ModTimer) {
+  return (dispatch: Dispatch, getState: GetState) => {
+    dispatch(
+      ({
+        type: "TIMER_EDIT",
+        payload: {
+          id,
+          modification
+        }
+      }: EditTimerAction)
+    );
+    const { auth, timer } = getState();
+    if (auth === "loggedin") {
+      window.db // $FlowIssue
+        .doc(`/users/${firebase.auth().currentUser.uid}/timers/${id}`)
+        .set(timer2dbTimer(timer[id]));
     }
   };
 }
