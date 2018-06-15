@@ -8,7 +8,7 @@ import type { Dispatch } from "../types/Store";
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
     {
-      click: generateTimer
+      click: () => generateTimer()
     },
     dispatch
   );
