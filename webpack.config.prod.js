@@ -1,10 +1,10 @@
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const merge = require("webpack-merge");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 const baseConfig = require("./webpack.config");
 
-const plugins = [new ExtractTextPlugin("style.css")];
+const plugins = [new MiniCssExtractPlugin()];
 if (process.env.ANALYZE) {
   plugins.push(new BundleAnalyzerPlugin());
 }
@@ -15,16 +15,7 @@ module.exports = merge.smart(baseConfig, {
       // Extract all .css to style.css as is
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          publicPath: "./",
-          use: {
-            loader: "css-loader",
-            options: {
-              minimize: true
-            }
-          },
-          fallback: "style-loader"
-        })
+        use: [MiniCssExtractPlugin.loader, "css-loader"]
       },
       // WOFF Font
       {
