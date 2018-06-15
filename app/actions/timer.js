@@ -11,11 +11,24 @@ type AddTimerAction = {
   type: "TIMER_ADD",
   payload: { timer: Timer }
 };
-export function addTimer(timer: Timer): AddTimerAction {
-  return ({
-    type: "TIMER_ADD",
-    payload: { timer }
-  }: AddTimerAction);
+export function addTimer(timer: Timer, shouldUpload: boolean = true) {
+  return (dispatch: Dispatch, getState: GetState) => {
+    dispatch(
+      ({
+        type: "TIMER_ADD",
+        payload: { timer }
+      }: AddTimerAction)
+    );
+    if (!shouldUpload) {
+      return;
+    }
+    const { auth } = getState();
+    if (auth === "loggedin") {
+      window.db // $FlowIssue
+        .doc(`/users/${firebase.auth().currentUser.uid}/timers/${timer}`)
+        .set(timer2dbTimer(timer));
+    }
+  };
 }
 
 type GenerateTimerAction = {
