@@ -35,7 +35,7 @@ type GenerateTimerAction = {
   type: "TIMER_GENERATE",
   payload: { timer: ModTimer }
 };
-export function generateTimer(timer: ModTimer) {
+export function generateTimer(timer: ModTimer, shouldUpload: boolean = true) {
   return (dispatch: Dispatch) => {
     dispatch(
       ({
@@ -50,7 +50,7 @@ export function generateTimer(timer: ModTimer) {
       ...timer
     };
 
-    dispatch(addTimer(timerGen));
+    dispatch(addTimer(timerGen, shouldUpload));
   };
 }
 
