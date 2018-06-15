@@ -10,6 +10,7 @@ export type Props = {|
 
 export default (props: Props) => (
   <TimeDisplay>
+    {/* $FlowIssue */}
     {moment.duration(props.time, "ms").format("d[d] h[h] m[m] s[s]", {
       trim: "both"
     })}
