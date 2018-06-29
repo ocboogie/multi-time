@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import type { Timer as TimerType, ModTimer } from "../../types/Timer";
 import getElapsedTime from "../../utils/getElapsedTime";
 import Title from "./Title";
-import TimeDisplay from "./TimeDisplay";
+import TimeDisplay from "../../containers/TimeDisplay";
 import Actions from "./Actions";
 import TimerContainer from "./indexStyles";
 
@@ -28,17 +28,6 @@ export default class Timer extends Component<Props, State> {
     this.state = { editableTitle: props.timer.name === null };
   }
 
-  componentDidMount() {
-    this.interval = setInterval(this.forceUpdate.bind(this), 33);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-
-  // eslint-disable-next-line no-undef
-  interval: IntervalID;
-
   handleDelete = () => {
     this.props.delete(this.props.timer.id);
   };
@@ -58,17 +47,20 @@ export default class Timer extends Component<Props, State> {
   render() {
     const { timer } = this.props;
 
-    const elapsed = getElapsedTime(
-      timer.timing.baseTime,
-      timer.timing.startedAt,
-      timer.timing.stoppedAt
-    );
-
     return (
       <TimerContainer className="card">
         <div className="card-image">
           <Title
-            play={() => this.props.play(timer.id, elapsed)}
+            play={() =>
+              this.props.play(
+                timer.id,
+                getElapsedTime(
+                  timer.timing.baseTime,
+                  timer.timing.startedAt,
+                  timer.timing.stoppedAt
+                )
+              )
+            }
             pause={
               () => this.props.pause(timer.id) // Could be slow performance-wise
             }
@@ -82,7 +74,7 @@ export default class Timer extends Component<Props, State> {
           />
         </div>
         <div className="card-content">
-          <TimeDisplay time={elapsed} />
+          <TimeDisplay id={timer.id} />
         </div>
         <div className="card-action">
           <Actions
