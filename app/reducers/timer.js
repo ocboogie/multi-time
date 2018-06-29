@@ -16,49 +16,49 @@ export default function(state: TimerState = {}, action: Action): TimerState {
     }
     case "TIMER_EDIT": {
       const { id, modification } = action.payload;
-      const editedState = { ...state };
-      const timer = editedState[id];
-      if (timer) {
-        Object.assign(timer, modification);
+      const timer = state[id];
+      if (!timer) {
+        return { ...state };
       }
-      return editedState;
+      return { ...state, [id]: { ...timer, ...modification } };
     }
     case "TIMER_START": {
       const { id, baseTime, now } = action.payload;
-      const editedState = { ...state };
-      const timer = editedState[id];
-      if (timer) {
-        timer.timing = {
-          baseTime,
-          startedAt: now,
-          paused: false
-        };
+      const timer = { ...state[id] };
+      if (!timer) {
+        return { ...state };
       }
-      return editedState;
+      timer.timing = {
+        baseTime,
+        startedAt: now,
+        paused: false
+      };
+      return { ...state, [id]: timer };
     }
     case "TIMER_STOP": {
       const { id, now } = action.payload;
-      const editedState = { ...state };
-      const timer = editedState[id];
-      if (timer) {
-        Object.assign(timer.timing, {
-          stoppedAt: now,
-          paused: true
-        });
+      const timer = { ...state[id] };
+      if (!timer) {
+        return { ...state };
       }
-      return editedState;
+      timer.timing = {
+        ...timer.timing,
+        stoppedAt: now,
+        paused: true
+      };
+      return { ...state, [id]: timer };
     }
     case "TIMER_RESET": {
       const { id } = action.payload;
-      const editedState = { ...state };
-      const timer = editedState[id];
-      if (timer) {
-        timer.timing = {
-          baseTime: 0,
-          paused: true
-        };
+      const timer = { ...state[id] };
+      if (!timer) {
+        return { ...state };
       }
-      return editedState;
+      timer.timing = {
+        baseTime: 0,
+        paused: true
+      };
+      return { ...state, [id]: timer };
     }
     default:
       return state;
