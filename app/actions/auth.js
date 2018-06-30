@@ -54,6 +54,12 @@ export function loggingIn() {
     );
     const user = firebase.auth().currentUser;
 
+    if (!user) {
+      // TODO: Display login failed
+      dispatch(({ type: "AUTH_SIGN_OUT" }: SignOutAuthAction));
+      return;
+    }
+
     window.db
       .collection(`/users/${user.uid}/timers`)
       .get()
