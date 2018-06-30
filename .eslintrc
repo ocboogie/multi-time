@@ -18,7 +18,10 @@
         "newlines-between": "always",
         "groups": ["builtin", "external", ["sibling", "parent"], "index"]
       }
-    ]
+    ],
+    "import/no-cycle": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/destructuring-assignment": "off"
   },
   "plugins": ["import", "react", "prettier", "flowtype"],
   "settings": {

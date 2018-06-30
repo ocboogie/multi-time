@@ -32,4 +32,7 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Timer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Timer);

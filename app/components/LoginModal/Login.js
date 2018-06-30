@@ -30,12 +30,13 @@ export default class Login extends Component<Props, State> {
   }
 
   handleChange = (event: { target: { id: string, value: string } }) => {
-    this.setState({
+    const { target } = event;
+    this.setState((prevState: State) => ({
       fields: {
-        ...this.state.fields,
-        [event.target.id]: event.target.value
+        ...prevState.fields,
+        [target.id]: target.value
       }
-    });
+    }));
   };
 
   handleSubmit = (event: Event) => {

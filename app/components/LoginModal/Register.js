@@ -22,28 +22,6 @@ export type State = {|
 |};
 
 export default class Login extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      error: "",
-      fields: {
-        email: {
-          value: "",
-          isValid: null
-        },
-        password: {
-          value: "",
-          isValid: null
-        },
-        passwordConfirm: {
-          value: "",
-          isValid: null
-        }
-      }
-    };
-  }
-
   validators = {
     email(value: string) {
       const isValid = isEmail(value);
@@ -74,11 +52,26 @@ export default class Login extends Component<Props, State> {
     }
   };
 
-  validateForm() {
-    return Object.values(this.state.fields).every(
-      // $FlowIssue
-      field => field.isValid === true
-    );
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      error: "",
+      fields: {
+        email: {
+          value: "",
+          isValid: null
+        },
+        password: {
+          value: "",
+          isValid: null
+        },
+        passwordConfirm: {
+          value: "",
+          isValid: null
+        }
+      }
+    };
   }
 
   handleChange = (event: { target: { id: string, value: string } }) => {
@@ -97,16 +90,16 @@ export default class Login extends Component<Props, State> {
         }
       };
     }
-    this.setState({
+    this.setState((prevState: State) => ({
       fields: {
-        ...this.state.fields,
+        ...prevState.fields,
         ...samePasswordCheck,
         [event.target.id]: {
           value: event.target.value,
           isValid: this.validators[event.target.id](event.target.value)
         }
       }
-    });
+    }));
   };
 
   handleSubmit = (event: Event) => {
@@ -127,6 +120,13 @@ export default class Login extends Component<Props, State> {
         });
       });
   };
+
+  validateForm() {
+    return Object.values(this.state.fields).every(
+      // $FlowIssue
+      field => field.isValid === true
+    );
+  }
 
   render() {
     return (

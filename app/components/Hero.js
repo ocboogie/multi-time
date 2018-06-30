@@ -11,11 +11,19 @@ export type Props = {|
 
 export default ({ login, signOut, isLoggedIn }: Props) => {
   const Login = isLoggedIn ? (
-    <button className="waves-effect waves-light btn-large" onClick={signOut}>
+    <button
+      type="button"
+      className="waves-effect waves-light btn-large"
+      onClick={signOut}
+    >
       Sign out
     </button>
   ) : (
-    <button className="waves-effect waves-light btn-large" onClick={login}>
+    <button
+      type="button"
+      className="waves-effect waves-light btn-large"
+      onClick={login}
+    >
       Login
     </button>
   );

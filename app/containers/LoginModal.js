@@ -21,4 +21,7 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginModal);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LoginModal);

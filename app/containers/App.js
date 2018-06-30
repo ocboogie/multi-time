@@ -1,11 +1,11 @@
 // @flow
 import React from "react";
 
-import Add from "../containers/Add";
+import Add from "./Add";
 import Timers from "./Timers";
 import Hero from "./Hero";
 import ResetConfirmModal from "./ResetConfirmModal";
-import LoginModal from "../containers/LoginModal";
+import LoginModal from "./LoginModal";
 
 export default () => (
   // $FlowIssue
