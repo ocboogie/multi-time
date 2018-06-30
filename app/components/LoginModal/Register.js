@@ -75,9 +75,10 @@ export default class Login extends Component<Props, State> {
   }
 
   handleChange = (event: { target: { id: string, value: string } }) => {
+    const { id, value } = event.target;
     let samePasswordCheck = {};
     if (
-      event.target.id === "password" &&
+      id === "password" &&
       this.state.fields.passwordConfirm.isValid !== null
     ) {
       samePasswordCheck = {
@@ -85,7 +86,7 @@ export default class Login extends Component<Props, State> {
           value: this.state.fields.passwordConfirm.value,
           isValid: this.validators.passwordConfirm(
             this.state.fields.passwordConfirm.value,
-            event.target.value
+            value
           )
         }
       };
@@ -94,9 +95,9 @@ export default class Login extends Component<Props, State> {
       fields: {
         ...prevState.fields,
         ...samePasswordCheck,
-        [event.target.id]: {
-          value: event.target.value,
-          isValid: this.validators[event.target.id](event.target.value)
+        [id]: {
+          value,
+          isValid: this.validators[id](value)
         }
       }
     }));
