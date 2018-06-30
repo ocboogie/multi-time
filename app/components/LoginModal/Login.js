@@ -57,6 +57,8 @@ export default class Login extends Component<Props, State> {
   };
 
   render() {
+    const { email, password } = this.state.fields;
+
     return (
       // $FlowIssue
       <>
@@ -67,7 +69,7 @@ export default class Login extends Component<Props, State> {
             <div className="row">
               <div className="input-field col s12">
                 <input
-                  value={this.state.fields.email}
+                  value={email}
                   id="email"
                   type="email"
                   onChange={this.handleChange}
@@ -82,7 +84,7 @@ export default class Login extends Component<Props, State> {
             <div className="row">
               <div className="input-field col s12">
                 <input
-                  value={this.state.fields.password}
+                  value={password}
                   id="password"
                   type="password"
                   onChange={this.handleChange}

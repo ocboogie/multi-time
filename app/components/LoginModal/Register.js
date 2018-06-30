@@ -129,6 +129,9 @@ export default class Login extends Component<Props, State> {
   }
 
   render() {
+    const { fields, error } = this.state;
+    const { email, password, passwordConfirm } = fields;
+
     return (
       // $FlowIssue
       <>
@@ -139,17 +142,14 @@ export default class Login extends Component<Props, State> {
             <div className="row">
               <div className="input-field col s12">
                 <input
-                  value={this.state.fields.email.value}
+                  value={email.value}
                   onChange={this.handleChange}
                   id="email"
                   type="email"
-                  className={formClassValid(this.state.fields.email.isValid)}
+                  className={formClassValid(email.isValid)}
                 />
                 {/* eslint-disable-next-line jsx-a11y/label-has-for */}
-                <label
-                  data-error={this.state.fields.email.isValid}
-                  htmlFor="email"
-                >
+                <label data-error={email.isValid} htmlFor="email">
                   Email
                 </label>
               </div>
@@ -157,17 +157,14 @@ export default class Login extends Component<Props, State> {
             <div className="row">
               <div className="input-field col s12">
                 <input
-                  value={this.state.fields.password.value}
+                  value={password.value}
                   onChange={this.handleChange}
                   id="password"
                   type="password"
-                  className={formClassValid(this.state.fields.password.isValid)}
+                  className={formClassValid(password.isValid)}
                 />
                 {/* eslint-disable-next-line jsx-a11y/label-has-for */}
-                <label
-                  data-error={this.state.fields.password.isValid}
-                  htmlFor="password"
-                >
+                <label data-error={password.isValid} htmlFor="password">
                   Password
                 </label>
               </div>
@@ -175,17 +172,15 @@ export default class Login extends Component<Props, State> {
             <div className="row">
               <div className="input-field col s12">
                 <input
-                  value={this.state.fields.passwordConfirm.value}
+                  value={passwordConfirm.value}
                   onChange={this.handleChange}
                   id="passwordConfirm"
                   type="password"
-                  className={formClassValid(
-                    this.state.fields.passwordConfirm.isValid
-                  )}
+                  className={formClassValid(passwordConfirm.isValid)}
                 />
                 {/* eslint-disable-next-line jsx-a11y/label-has-for */}
                 <label
-                  data-error={this.state.fields.passwordConfirm.isValid}
+                  data-error={passwordConfirm.isValid}
                   htmlFor="passwordConfirm"
                 >
                   Confirm Password
@@ -193,10 +188,8 @@ export default class Login extends Component<Props, State> {
               </div>
             </div>
             <div className="row error-row">
-              <div
-                className={`col s12 error ${this.state.error ? "active" : ""}`}
-              >
-                {this.state.error}
+              <div className={`col s12 error ${error ? "active" : ""}`}>
+                {error}
               </div>
             </div>
             <div className="row">
