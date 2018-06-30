@@ -1,10 +1,8 @@
 // @flow
 import React, { Component } from "react";
 import $ from "jquery";
-import FontAwesomeIcon from "@fortawesome/react-fontawesome";
-import faEdit from "@fortawesome/fontawesome-free-solid/faEdit";
-import faTrashAlt from "@fortawesome/fontawesome-free-solid/faTrashAlt";
-import faRedo from "@fortawesome/fontawesome-free-solid/faRedo";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashAlt, faEdit, faRedo } from "@fortawesome/free-solid-svg-icons";
 
 import ActionsContainer from "./ActionsStyles";
 
