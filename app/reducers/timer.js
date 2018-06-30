@@ -8,6 +8,8 @@ export default function(state: TimerState = {}, action: Action): TimerState {
   switch (action.type) {
     case "TIMER_ADD":
       return { ...state, [action.payload.timer.id]: action.payload.timer };
+    case "TIMER_CLEAR":
+      return {};
     case "TIMER_PERM_REMOVE": {
       const { id } = action.payload;
       const editedState = { ...state };

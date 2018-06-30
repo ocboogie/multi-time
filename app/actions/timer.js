@@ -134,6 +134,13 @@ export function removeTimer(id: string) {
   };
 }
 
+type ClearTimerAction = {
+  type: "TIMER_CLEAR"
+};
+export function clearTimer(): ClearTimerAction {
+  return { type: "TIMER_CLEAR" };
+}
+
 type EditTimerAction = {
   type: "TIMER_EDIT",
   payload: {
@@ -169,4 +176,5 @@ export type TimerAction =
   | StopTimerAction
   | ResetTimerAction
   | RemoveTimerAction
+  | ClearTimerAction
   | EditTimerAction;
