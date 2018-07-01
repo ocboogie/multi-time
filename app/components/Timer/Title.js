@@ -25,6 +25,14 @@ export default class Title extends Component<Props, State> {
     this.state = { title: this.props.title };
   }
 
+  shouldComponentUpdate = (props: Props) => {
+    if (props.title !== this.state.title && !props.editable) {
+      this.setState({ title: props.title });
+      return false;
+    }
+    return true;
+  };
+
   fabClickHandler = () => {
     if (this.props.paused) {
       this.props.play();
