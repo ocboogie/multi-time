@@ -82,18 +82,18 @@ type StartTimerAction = {
 export function startTimer(id: string, baseTime: number): StartTimerAction {
   return {
     type: "TIMER_START",
-    payload: { id, baseTime, now: new Date().getTime() }
+    payload: { id, baseTime, now: Date.now() }
   };
 }
 
 type StopTimerAction = {
   type: "TIMER_STOP",
-  payload: { id: string, now: number }
+  payload: { id: string }
 };
 export function stopTimer(id: string): StopTimerAction {
   return {
     type: "TIMER_STOP",
-    payload: { id, now: new Date().getTime() }
+    payload: { id }
   };
 }
 

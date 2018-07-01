@@ -31,11 +31,7 @@ export default class Timer extends Component<Props> {
 
   render() {
     const { timing } = this.props;
-    const elapsed = getElapsedTime(
-      timing.baseTime,
-      timing.startedAt,
-      timing.stoppedAt
-    );
+    const elapsed = getElapsedTime(timing.baseTime, timing.startedAt);
     return (
       <TimeDisplay>
         {/* $FlowIssue */}

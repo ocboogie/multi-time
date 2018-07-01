@@ -54,11 +54,7 @@ export default class Timer extends Component<Props, State> {
             play={() =>
               this.props.play(
                 timer.id,
-                getElapsedTime(
-                  timer.timing.baseTime,
-                  timer.timing.startedAt,
-                  timer.timing.stoppedAt
-                )
+                getElapsedTime(timer.timing.baseTime, timer.timing.startedAt)
               )
             }
             pause={

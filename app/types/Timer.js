@@ -1,6 +1,5 @@
 type Timing = {|
-  startedAt: number,
-  stoppedAt: number,
+  startedAt?: number,
   baseTime: number,
   paused: boolean
 |};

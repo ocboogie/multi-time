@@ -1,4 +1,5 @@
 // @flow
+import getElapsed from "../utils/getElapsedTime";
 import type { Action } from "../types/Action";
 import type { Timer } from "../types/Timer";
 
@@ -38,14 +39,13 @@ export default function(state: TimerState = {}, action: Action): TimerState {
       return { ...state, [id]: timer };
     }
     case "TIMER_STOP": {
-      const { id, now } = action.payload;
+      const { id } = action.payload;
       const timer = { ...state[id] };
       if (!timer) {
         return { ...state };
       }
       timer.timing = {
-        ...timer.timing,
-        stoppedAt: now,
+        baseTime: getElapsed(timer.timing.baseTime, timer.timing.startedAt),
         paused: true
       };
       return { ...state, [id]: timer };

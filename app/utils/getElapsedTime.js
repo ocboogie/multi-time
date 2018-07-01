@@ -1,11 +1,7 @@
 // @flow
-export default (
-  baseTime: number,
-  startedAt: number,
-  stoppedAt: number = new Date().getTime()
-) => {
+export default (baseTime: number, startedAt: number) => {
   if (!startedAt) {
     return baseTime || 0;
   }
-  return stoppedAt - startedAt + baseTime;
+  return Date.now() - startedAt + baseTime;
 };
