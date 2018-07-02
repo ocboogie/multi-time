@@ -1,8 +1,7 @@
 // @flow
 import firebase from "firebase";
 
-import { generateTimer } from "./timer";
-import timer2dbTimer from "../utils/timer2dbTimer";
+import { syncTimer } from "./timer";
 import type { Dispatch, GetState } from "../types/Store";
 
 // eslint-disable-next-line no-undef
@@ -12,16 +11,8 @@ type LoginAuthAction = {
   type: "AUTH_LOGIN"
 };
 export function login() {
-  return (dispatch: Dispatch, getState: GetState) => {
+  return (dispatch: Dispatch) => {
     dispatch(({ type: "AUTH_LOGIN" }: LoginAuthAction));
-    const user = firebase.auth().currentUser;
-    uploadInterval = setInterval(() => {
-      Object.values(getState().timer).forEach(timer => {
-        window.db // $FlowIssue
-          .doc(`/users/${user.uid}/timers/${timer.id}`)
-          .set(timer2dbTimer(timer));
-      });
-    }, 5000);
   };
 }
 
@@ -59,23 +50,19 @@ export function loggingIn() {
       dispatch(({ type: "AUTH_SIGN_OUT" }: SignOutAuthAction));
       return;
     }
-
     window.db
       .collection(`/users/${user.uid}/timers`)
-      .get()
-      .then(timers => {
-        timers.forEach(docTimer => {
+      .onSnapshot(collectionTimers => {
+        const timers = Object.create(null);
+
+        collectionTimers.forEach(docTimer => {
           const timer = docTimer.data();
-          dispatch(
-            generateTimer({
-              name: timer.name,
-              id: timer.id,
-              timing: { paused: true, baseTime: timer.elapsed }
-            })
-          );
+          timers[timer.id] = timer;
         });
-        dispatch(login());
+
+        dispatch(syncTimer(timers));
       });
+    dispatch(login());
   };
 }
 

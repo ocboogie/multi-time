@@ -29,6 +29,7 @@
     "firebase": "^5.2.0",
     "geopattern": "^1.2.3",
     "jquery": "^3.3.1",
+    "lodash.isequal": "^4.5.0",
     "materialize-css": "^0.100.2",
     "moment": "^2.22.2",
     "moment-duration-format": "^2.2.2",

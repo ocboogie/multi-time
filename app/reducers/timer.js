@@ -50,6 +50,15 @@ export default function(state: TimerState = {}, action: Action): TimerState {
       };
       return { ...state, [id]: timer };
     }
+    case "TIMER_SET_TIMING": {
+      const { id, timing } = action.payload;
+      const timer = { ...state[id] };
+      if (!timer) {
+        return { ...state };
+      }
+      timer.timing = timing;
+      return { ...state, [id]: timer };
+    }
     case "TIMER_RESET": {
       const { id } = action.payload;
       const timer = { ...state[id] };
