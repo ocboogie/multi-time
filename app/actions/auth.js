@@ -4,9 +4,6 @@ import firebase from "firebase";
 import { syncTimer } from "./timer";
 import type { Dispatch, GetState } from "../types/Store";
 
-// eslint-disable-next-line no-undef
-let uploadInterval: IntervalID;
-
 type LoginAuthAction = {
   type: "AUTH_LOGIN"
 };
@@ -21,7 +18,6 @@ type SignOutAuthAction = {
 };
 export function signOut() {
   return (dispatch: Dispatch, getState: GetState) => {
-    clearInterval(uploadInterval);
     if (getState().auth !== "loggedout") {
       firebase.auth().signOut();
     }
