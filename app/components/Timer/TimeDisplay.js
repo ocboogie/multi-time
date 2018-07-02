@@ -11,6 +11,12 @@ export type Props = {|
 |};
 
 export default class Timer extends Component<Props> {
+  componentDidMount() {
+    if (!this.props.timing.paused) {
+      requestAnimationFrame(this.updateLoop);
+    }
+  }
+
   componentDidUpdate(prevProps: Props) {
     if (!this.props.timing.paused && prevProps.timing.paused) {
       requestAnimationFrame(this.updateLoop);
