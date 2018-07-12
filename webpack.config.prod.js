@@ -1,10 +1,14 @@
+const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const merge = require("webpack-merge");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 const baseConfig = require("./webpack.config");
 
-const plugins = [new MiniCssExtractPlugin()];
+const plugins = [
+  new MiniCssExtractPlugin(),
+  new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /en/)
+];
 if (process.env.ANALYZE) {
   plugins.push(new BundleAnalyzerPlugin());
 }
