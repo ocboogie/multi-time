@@ -4,8 +4,7 @@ import React from "react";
 import Add from "./Add";
 import Timers from "./Timers";
 import Hero from "./Hero";
-import ResetConfirmModal from "./ResetConfirmModal";
-import LoginModal from "./LoginModal";
+import Modals from "./Modals";
 
 export default () => (
   // $FlowIssue
@@ -18,7 +17,6 @@ export default () => (
     <div className="section">
       <Timers />
     </div>
-    <ResetConfirmModal />
-    <LoginModal />
+    <Modals />
   </>
 );

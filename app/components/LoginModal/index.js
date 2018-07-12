@@ -6,13 +6,13 @@ import LoginModalContainer from "./indexStyles";
 import Login from "./Login";
 import Recover from "./Recover";
 import Register from "./Register";
+import type { LoginModalPayload } from "../../actions/modal";
 
 type Display = "login" | "register" | "recover";
 
 export type Props = {|
-  active: boolean,
   close: () => void
-|};
+|} & LoginModalPayload;
 
 export type State = {|
   display: Display
@@ -32,18 +32,12 @@ export default class LoginModal extends Component<Props, State> {
     $("#login_modal_tabs").tabs();
     // $FlowIssue
     $("#login_modal").modal({
-      complete: this.props.close
+      complete: () => {
+        this.props.close();
+      }
     });
-  }
-
-  componentDidUpdate() {
-    if (this.props.active) {
-      // $FlowIssue
-      $("#login_modal").modal("open");
-    } else {
-      // $FlowIssue
-      $("#login_modal").modal("close");
-    }
+    // $FlowIssue
+    $("#login_modal").modal("open");
   }
 
   changeDisplay = (display: Display) => {
