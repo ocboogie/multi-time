@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
+import Loadable from "react-loadable";
 
-import Timer from "../containers/Timer";
 import TimersContainer, { Item, Empty } from "./TimersStyles";
 import type { TimerState } from "../reducers/timer";
 import type { AuthState } from "../reducers/auth";
@@ -11,6 +11,11 @@ export type Props = {|
   timers: TimerState,
   authState: AuthState
 |};
+
+const LoadableTimer = Loadable({
+  loader: () => import("../containers/Timer"),
+  loading: () => null
+});
 
 export default (props: Props) => {
   if (props.authState === "loggedout") {
@@ -32,7 +37,7 @@ export default (props: Props) => {
     .sort((a: TimerType, b: TimerType) => a.name.localeCompare(b.name)) // $FlowIssue
     .map((timer: TimerType) => (
       <Item key={timer.id}>
-        <Timer id={timer.id} />
+        <LoadableTimer id={timer.id} />
       </Item>
     ));
 

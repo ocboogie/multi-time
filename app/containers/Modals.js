@@ -1,11 +1,19 @@
 // @flow
 import React from "react";
 import { connect } from "react-redux";
+import Loadable from "react-loadable";
 
-import ResetConfirmModal from "./ResetConfirmModal";
-import LoginModal from "./LoginModal";
 import type { State } from "../types/State";
 import type { ModalPayloads } from "../actions/modal";
+
+const LoadableResetConfirmModal = Loadable({
+  loader: () => import("./ResetConfirmModal"),
+  loading: () => null
+});
+const LoadableLoginModal = Loadable({
+  loader: () => import("./LoginModal"),
+  loading: () => null
+});
 
 type Props = {|
   activeModal: string,
@@ -16,10 +24,10 @@ const Modals = (props: Props) => {
   let CurrentModal;
   switch (props.activeModal) {
     case "RESET_CONFIRM":
-      CurrentModal = ResetConfirmModal;
+      CurrentModal = LoadableResetConfirmModal;
       break;
     case "LOGIN":
-      CurrentModal = LoginModal;
+      CurrentModal = LoadableLoginModal;
       break;
     default:
       return null;
