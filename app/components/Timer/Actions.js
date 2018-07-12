@@ -2,7 +2,9 @@
 import React, { Component } from "react";
 import $ from "jquery";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashAlt, faEdit, faRedo } from "@fortawesome/free-solid-svg-icons";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons/faTrashAlt";
+import { faEdit } from "@fortawesome/free-solid-svg-icons/faEdit";
+import { faRedo } from "@fortawesome/free-solid-svg-icons/faRedo";
 
 import ActionsContainer from "./ActionsStyles";
 
