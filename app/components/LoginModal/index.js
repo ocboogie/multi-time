@@ -11,8 +11,7 @@ type Display = "login" | "register" | "recover";
 
 export type Props = {|
   active: boolean,
-  close: () => void,
-  loggingIn: () => void
+  close: () => void
 |};
 
 export type State = {|
@@ -51,8 +50,7 @@ export default class LoginModal extends Component<Props, State> {
     this.setState({ display });
   };
 
-  login = () => {
-    this.props.loggingIn();
+  successfullyLoggedIn = () => {
     // $FlowIssue
     $("#login_modal").modal("close");
   };
@@ -65,13 +63,13 @@ export default class LoginModal extends Component<Props, State> {
       case "login":
         content = (
           <Login
-            login={this.login}
+            loggedIn={this.successfullyLoggedIn}
             forgotPassword={() => this.changeDisplay("recover")}
           />
         );
         break;
       case "register":
-        content = <Register login={this.login} />;
+        content = <Register loggedIn={this.successfullyLoggedIn} />;
         break;
       case "recover":
         content = <Recover />;

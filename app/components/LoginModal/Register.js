@@ -8,7 +8,7 @@ import formClassValid from "../../utils/formClassValid";
 import RegisterContainer from "./RegisterStyles";
 
 export type Props = {|
-  login: () => void
+  loggedIn: () => void
 |};
 
 export type State = {|
@@ -113,7 +113,7 @@ export default class Login extends Component<Props, State> {
         this.state.fields.password.value
       )
       .then(() => {
-        this.props.login();
+        this.props.loggedIn();
       })
       .catch(error => {
         this.setState({

@@ -6,7 +6,7 @@ import LoginContaier from "./LoginStyles";
 
 export type Props = {|
   forgotPassword: () => void,
-  login: () => void
+  loggedIn: () => void
 |};
 
 export type State = {|
@@ -49,7 +49,7 @@ export default class Login extends Component<Props, State> {
         this.state.fields.password
       )
       .then(() => {
-        this.props.login();
+        this.props.loggedIn();
       })
       .catch(error => {
         this.setState({ error: error.message });
