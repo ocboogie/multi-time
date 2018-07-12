@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from "react";
 import isEmail from "validator/lib/isEmail";
-import firebase from "firebase";
+import firebase from "firebase/app";
 
 import readablePasswordValidator from "../../utils/readablePasswordValidator";
 import formClassValid from "../../utils/formClassValid";

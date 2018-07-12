@@ -1,5 +1,5 @@
 // @flow
-import firebase from "firebase";
+import firebase from "firebase/app";
 import uuid from "uuid/v4";
 import isEqual from "lodash.isequal";
 
