@@ -26,10 +26,9 @@ export function displayResetConfirmModal(
 }
 
 type DisplayLoginModalAction = {
-  type: "MODAL_DISPLAY_LOGIN",
-  payload: DisplayResetConfirmModalPayload
+  type: "MODAL_DISPLAY_LOGIN"
 };
-export function displayLoginModal(): DisplayResetConfirmModalAction {
+export function displayLoginModal(): DisplayLoginModalAction {
   return {
     type: "MODAL_DISPLAY_LOGIN"
   };
