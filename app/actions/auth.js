@@ -4,6 +4,8 @@ import firebase from "firebase";
 import { syncTimer } from "./timer";
 import type { Dispatch, GetState } from "../types/Store";
 
+let cancelStateSyncer;
+
 type LoginAuthAction = {
   type: "AUTH_LOGIN"
 };
@@ -18,6 +20,9 @@ type SignOutAuthAction = {
 };
 export function signOut() {
   return (dispatch: Dispatch, getState: GetState) => {
+    if (cancelStateSyncer) {
+      cancelStateSyncer();
+    }
     if (getState().auth !== "loggedout") {
       firebase.auth().signOut();
     }
@@ -46,7 +51,7 @@ export function loggingIn() {
       dispatch(({ type: "AUTH_SIGN_OUT" }: SignOutAuthAction));
       return;
     }
-    window.db
+    cancelStateSyncer = window.db
       .collection(`/users/${user.uid}/timers`)
       .onSnapshot(collectionTimers => {
         const timers = Object.create(null);
