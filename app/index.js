@@ -1,8 +1,6 @@
 // @flow
 import React from "react";
 import { render } from "react-dom";
-import momentDurationFormatSetup from "moment-duration-format";
-import moment from "moment";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
@@ -17,8 +15,6 @@ import type { Store } from "./types/Store";
 import "./style";
 
 const store: Store = configureStore();
-
-momentDurationFormatSetup(moment);
 
 firebase.initializeApp({
   apiKey: "AIzaSyDhN_yry9YrbAbarNYs3X_4TTdjjevs_Ck",

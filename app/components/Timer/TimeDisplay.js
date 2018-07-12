@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from "react";
-import moment from "moment";
+import prettyMs from "pretty-ms";
 
 import type { Timing } from "../../types/Timer";
 import TimeDisplay from "./TimeDisplayStyles";
@@ -41,9 +41,7 @@ export default class Timer extends Component<Props> {
     return (
       <TimeDisplay>
         {/* $FlowIssue */}
-        {moment.duration(elapsed, "ms").format("d[d] h[h] m[m] s[s]", {
-          trim: "both"
-        })}
+        {prettyMs(elapsed, { keepDecimalsOnWholeSeconds: true })}
       </TimeDisplay>
     );
   }
