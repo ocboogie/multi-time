@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   context: path.join(__dirname, "app"),
 
-  entry: ["@babel/polyfill", "./index.js"],
+  entry: "./index.ts",
 
   output: {
     path: path.join(__dirname, "dist"),
@@ -16,9 +16,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.tsx?$/,
         exclude: /(node_modules|bower_components)/,
-        use: "babel-loader"
+        use: "ts-loader"
       }
     ]
   },
@@ -40,6 +40,7 @@ module.exports = {
     __filename: false
   },
   resolve: {
+    extensions: [".ts", ".tsx", ".js", ".jsx"],
     alias: {
       jquery: path.resolve("node_modules/jquery/dist/jquery"),
       "@fortawesome/fontawesome-free-solid$":

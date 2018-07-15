@@ -23,7 +23,7 @@
     "react/jsx-one-expression-per-line": "off",
     "react/destructuring-assignment": "off"
   },
-  "plugins": ["import", "react", "prettier", "flowtype"],
+  "plugins": ["import", "react", "prettier"],
   "settings": {
     "import/resolver": {
       "webpack": {
