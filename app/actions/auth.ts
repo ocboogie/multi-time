@@ -1,4 +1,4 @@
-import firebase from "firebase";
+import firebase from "firebase/app";
 import { createAction, ActionType } from "typesafe-actions";
 import { ThunkAction } from "../types";
 

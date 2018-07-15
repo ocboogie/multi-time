@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "react-dom";
 import { compose } from "redux";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
 import "@fortawesome/fontawesome";
