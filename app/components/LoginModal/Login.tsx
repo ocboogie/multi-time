@@ -72,7 +72,6 @@ export default class Login extends Component<Props, State> {
                   type="email"
                   onChange={this.handleChange}
                 />
-                {/* eslint-disable-next-line jsx-a11y/label-has-for */}
                 <label className="active" htmlFor="email">
                   Email
                 </label>
@@ -87,7 +86,6 @@ export default class Login extends Component<Props, State> {
                   type="password"
                   onChange={this.handleChange}
                 />
-                {/* eslint-disable-next-line jsx-a11y/label-has-for */}
                 <label htmlFor="password">Password</label>
                 <span className="helper-text" />
               </div>

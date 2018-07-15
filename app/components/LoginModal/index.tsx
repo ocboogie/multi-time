@@ -50,7 +50,6 @@ export default class LoginModal extends Component<Props, State> {
   render() {
     let content;
 
-    // eslint-disable-next-line default-case
     switch (this.state.display) {
       case "login":
         content = (
@@ -73,7 +72,7 @@ export default class LoginModal extends Component<Props, State> {
         <ul id="login_modal_tabs" className="tabs tabs-fixed-width">
           <li className="tab">
             {/* TODO: work on accessibility */}
-            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/anchor-is-valid */}
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/click-events-have-key-events */}
             <a
               tabIndex={0}
               role="button"
@@ -87,7 +86,7 @@ export default class LoginModal extends Component<Props, State> {
           </li>
           <li className="tab">
             {/* TODO: work on accessibility */}
-            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/anchor-is-valid */}
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/click-events-have-key-events */}
             <a
               tabIndex={0}
               role="button"

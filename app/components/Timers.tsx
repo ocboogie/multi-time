@@ -11,7 +11,7 @@ export interface Props {
   authState: AuthState;
 }
 
-export default (props: Props) => {
+const Timers = (props: Props) => {
   if (props.authState === "signedout") {
     return <Empty>You aren&apos;t logged in!</Empty>;
   }
@@ -44,3 +44,7 @@ export default (props: Props) => {
 
   return <TimersContainer>{TimerComps}</TimersContainer>;
 };
+
+Timers.displayName = "Timers";
+
+export default Timers;

@@ -41,7 +41,6 @@ export default class Title extends Component<Props, State> {
     }
   };
 
-  // eslint-disable-next-line no-undef
   handleTitleChange = (event: React.FormEvent<HTMLInputElement>) => {
     this.setState({ title: event.currentTarget.value });
   };
@@ -51,14 +50,12 @@ export default class Title extends Component<Props, State> {
     this.props.changeTitle(this.state.title);
   };
 
-  // eslint-disable-next-line no-undef
   handleTitleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       this.cancelEditing();
     }
   };
 
-  // eslint-disable-next-line no-undef
   handleTitleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
     event.target.select();
   };
@@ -78,6 +75,7 @@ export default class Title extends Component<Props, State> {
 
     const title = this.props.editable ? (
       <TitleEdit
+        // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus
         type="text"
         value={this.state.title}

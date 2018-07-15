@@ -8,7 +8,7 @@ export interface Props {
   click: () => void;
 }
 
-export default ({ click }: Props) => (
+const Add = ({ click }: Props) => (
   <div className="fixed-action-btn">
     <div
       onClick={click}
@@ -23,3 +23,5 @@ export default ({ click }: Props) => (
     </div>
   </div>
 );
+
+export default Add;

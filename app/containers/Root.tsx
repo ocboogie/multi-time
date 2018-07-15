@@ -8,8 +8,12 @@ interface Props {
   store: Store;
 }
 
-export default (props: Props) => (
+const Root = (props: Props) => (
   <Provider store={props.store}>
     <App />
   </Provider>
 );
+
+Root.displayName = "Root";
+
+export default Root;

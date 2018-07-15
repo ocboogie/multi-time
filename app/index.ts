@@ -1,3 +1,4 @@
+import "core-js";
 import React from "react";
 import { render } from "react-dom";
 import { compose } from "redux";
@@ -24,17 +25,21 @@ firebase.initializeApp({
   messagingSenderId: "924179901209"
 });
 
+const db = firebase.firestore();
+db.settings({ timestampsInSnapshots: true });
+
+window.db = db;
+
+// eslint-disable-next-line typescript/prefer-namespace-keyword
 declare global {
   interface Window {
     db: firebase.firestore.Firestore;
     __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: typeof compose;
   }
+  interface Function {
+    displayName: string;
+  }
 }
-
-const db = firebase.firestore();
-db.settings({ timestampsInSnapshots: true });
-
-window.db = db;
 
 render(React.createElement(Root, { store }), document.getElementById("root"));
 

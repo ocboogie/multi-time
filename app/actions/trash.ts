@@ -1,5 +1,3 @@
-import Materialize from "materialize-css";
-import $ from "jquery";
 import { createAction, ActionType } from "typesafe-actions";
 
 import { addTimer } from "./timer";

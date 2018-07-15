@@ -27,8 +27,12 @@ export default class Actions extends Component<Props> {
   render() {
     return (
       <ActionsContainer>
+        {/* TODO: work on accessibility */}
+        {/* eslint-disable jsx-a11y/click-events-have-key-events */}
         <span
           onClick={this.props.edit}
+          tabIndex={0}
+          role="button"
           className="action-tooltipped"
           data-position="bottom"
           data-delay="25"
@@ -38,6 +42,8 @@ export default class Actions extends Component<Props> {
         </span>
         <span
           onClick={this.props.reset}
+          tabIndex={0}
+          role="button"
           className="action-tooltipped"
           data-position="bottom"
           data-delay="25"
@@ -47,6 +53,8 @@ export default class Actions extends Component<Props> {
         </span>
         <span
           onClick={this.props.delete}
+          tabIndex={0}
+          role="button"
           className="action-tooltipped"
           data-position="bottom"
           data-delay="25"
@@ -54,6 +62,7 @@ export default class Actions extends Component<Props> {
         >
           <FontAwesomeIcon size="lg" icon={faTrashAlt} />
         </span>
+        {/* eslint-enable jsx-a11y/click-events-have-key-events */}
       </ActionsContainer>
     );
   }

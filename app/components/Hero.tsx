@@ -1,6 +1,6 @@
 import React from "react";
 
-import Hero, { Logo } from "./HeroStyles";
+import HeroContainer, { Logo } from "./HeroStyles";
 
 export interface Props {
   login: () => void;
@@ -8,7 +8,7 @@ export interface Props {
   isLoggedIn: boolean;
 }
 
-export default ({ login, signOut, isLoggedIn }: Props) => {
+const Hero = ({ login, signOut, isLoggedIn }: Props) => {
   const Login = isLoggedIn ? (
     <button
       type="button"
@@ -28,9 +28,13 @@ export default ({ login, signOut, isLoggedIn }: Props) => {
   );
 
   return (
-    <Hero>
+    <HeroContainer>
       <Logo>Multi Time</Logo>
       <div className="right-align">{Login}</div>
-    </Hero>
+    </HeroContainer>
   );
 };
+
+Hero.displayName = "Hero";
+
+export default Hero;

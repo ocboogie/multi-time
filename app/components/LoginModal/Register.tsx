@@ -6,6 +6,7 @@ import readablePasswordValidator from "../../utils/readablePasswordValidator";
 import formClassValid from "../../utils/formClassValid";
 import RegisterContainer from "./RegisterStyles";
 
+// eslint-disable-next-line typescript/no-use-before-define
 type Fields = keyof typeof Login.validators;
 
 export interface Props {
@@ -147,7 +148,6 @@ export default class Login extends Component<Props, State> {
                   type="email"
                   className={formClassValid(email.isValid)}
                 />
-                {/* eslint-disable-next-line jsx-a11y/label-has-for */}
                 <label data-error={email.isValid} htmlFor="email">
                   Email
                 </label>
@@ -162,7 +162,6 @@ export default class Login extends Component<Props, State> {
                   type="password"
                   className={formClassValid(password.isValid)}
                 />
-                {/* eslint-disable-next-line jsx-a11y/label-has-for */}
                 <label data-error={password.isValid} htmlFor="password">
                   Password
                 </label>
@@ -177,7 +176,6 @@ export default class Login extends Component<Props, State> {
                   type="password"
                   className={formClassValid(passwordConfirm.isValid)}
                 />
-                {/* eslint-disable-next-line jsx-a11y/label-has-for */}
                 <label
                   data-error={passwordConfirm.isValid}
                   htmlFor="passwordConfirm"

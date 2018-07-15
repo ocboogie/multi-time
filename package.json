@@ -8,12 +8,12 @@
     "prod": "webpack --config webpack.config.prod.js",
     "dev": "webpack-dev-server --config webpack.config.dev.js",
     "analyze": "cross-env ANALYZE=true webpack --config webpack.config.prod.js",
-    "lint": "eslint --cache --format=node_modules/eslint-formatter-pretty .",
+    "lint": "eslint --cache --format=node_modules/eslint-formatter-pretty --ext .ts --ext .tsx .",
     "format": "npm run lint -- --fix",
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.js": [
+    "*.{ts,tsx}": [
       "eslint --fix --format=node_modules/eslint-formatter-pretty",
       "git add"
     ]
@@ -23,6 +23,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.0",
     "@fortawesome/free-solid-svg-icons": "^5.1.0",
     "@fortawesome/react-fontawesome": "^0.1.0",
+    "core-js": "3.0.0-beta.3",
     "english-list": "^1.0.0",
     "firebase": "^5.2.0",
     "geopattern": "^1.2.3",
@@ -60,12 +61,14 @@
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^17.0.0",
     "eslint-config-prettier": "^2.9.0",
+    "eslint-config-typescript": "^1.1.0",
     "eslint-formatter-pretty": "^1.3.0",
     "eslint-import-resolver-webpack": "^0.10.1",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-prettier": "^2.6.1",
     "eslint-plugin-react": "^7.10.0",
+    "eslint-plugin-typescript": "^0.12.0",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.2.0",
     "husky": "^0.14.3",
