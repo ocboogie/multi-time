@@ -27,7 +27,7 @@ export default class Actions extends Component<Props> {
     // Destroy tooltip
     if (this.tooltips) {
       this.tooltips.forEach(tooltip => {
-        tooltip.close();
+        tooltip.destroy();
       });
     }
   }
