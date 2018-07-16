@@ -25,14 +25,6 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "index.html"
-    }),
-
-    new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery",
-      "window.$": "jquery",
-      "window.jQuery": "jquery",
-      Hammer: "hammerjs/hammer"
     })
   ],
   node: {
@@ -40,11 +32,6 @@ module.exports = {
     __filename: false
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx"],
-    alias: {
-      jquery: path.resolve("node_modules/jquery/dist/jquery"),
-      "@fortawesome/fontawesome-free-solid$":
-        "@fortawesome/fontawesome-free-solid/shakable.es.js"
-    }
+    extensions: [".ts", ".tsx", ".js", ".jsx"]
   }
 };

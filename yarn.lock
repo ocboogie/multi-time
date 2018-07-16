@@ -235,7 +235,7 @@
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/@types/geopattern/-/geopattern-1.2.2.tgz#87e3efdeba8d35c8b56727b0a25bc971006002ad"
 
-"@types/jquery@*", "@types/jquery@^3.3.4":
+"@types/jquery@*":
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.3.4.tgz#f1850fb9a70041a14ace4f81a7ed782db8548317"
 
@@ -3260,10 +3260,6 @@ jest-validate@^23.0.0:
     jest-get-type "^22.1.0"
     leven "^2.1.0"
     pretty-format "^23.0.1"
-
-jquery@^3.3.1:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
 
 js-base64@^2.1.9:
   version "2.4.5"

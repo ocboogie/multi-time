@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import $ from "jquery";
+import Materialize from "materialize-css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons/faTrashAlt";
 import { faEdit } from "@fortawesome/free-solid-svg-icons/faEdit";
@@ -14,14 +14,21 @@ export interface Props {
 }
 
 export default class Actions extends Component<Props> {
+  tooltips?: Materialize.Tooltip[];
+
   componentDidMount() {
     // Initialize tooltip
-    $(".action-tooltipped").tooltip();
+    const tooltips = document.querySelectorAll(".action-tooltipped");
+    this.tooltips = Materialize.Tooltip.init(tooltips);
   }
 
   componentWillUnmount() {
     // Destroy tooltip
-    $(".action-tooltipped").tooltip("destroy");
+    if (this.tooltips) {
+      this.tooltips.forEach(tooltip => {
+        tooltip.close();
+      });
+    }
   }
 
   render() {
@@ -34,8 +41,6 @@ export default class Actions extends Component<Props> {
           tabIndex={0}
           role="button"
           className="action-tooltipped"
-          data-position="bottom"
-          data-delay="25"
           data-tooltip="Edit"
         >
           <FontAwesomeIcon size="lg" icon={faEdit} />
@@ -45,8 +50,6 @@ export default class Actions extends Component<Props> {
           tabIndex={0}
           role="button"
           className="action-tooltipped"
-          data-position="bottom"
-          data-delay="25"
           data-tooltip="Reset"
         >
           <FontAwesomeIcon size="lg" icon={faRedo} />
@@ -56,8 +59,6 @@ export default class Actions extends Component<Props> {
           tabIndex={0}
           role="button"
           className="action-tooltipped"
-          data-position="bottom"
-          data-delay="25"
           data-tooltip="Delete"
         >
           <FontAwesomeIcon size="lg" icon={faTrashAlt} />

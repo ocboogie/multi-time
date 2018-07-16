@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import $ from "jquery";
+import Materialize from "materialize-css";
 
 import { DisplayResetConfirmModalPayload } from "../actions/modal";
 
@@ -9,11 +9,16 @@ export interface Props extends DisplayResetConfirmModalPayload {
 }
 
 export default class ResetConfirmModal extends Component<Props> {
+  modalInstance?: Materialize.Modal;
+
   componentDidMount() {
-    $("#reset_confirm_modal").modal({
-      onCloseEnd: this.props.close
-    });
-    $("#reset_confirm_modal").modal("open");
+    const modal = document.getElementById("reset_confirm_modal");
+    if (modal !== null) {
+      this.modalInstance = Materialize.Modal.init(modal, {
+        onCloseEnd: this.props.close
+      });
+      this.modalInstance.open();
+    }
   }
 
   handleYes = () => {

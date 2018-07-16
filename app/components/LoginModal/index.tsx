@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import $ from "jquery";
 import Materialize from "materialize-css";
 
 import LoginModalContainer from "./indexStyles";
@@ -18,6 +17,8 @@ export interface State {
 }
 
 export default class LoginModal extends Component<Props, State> {
+  modalInstance?: Materialize.Modal;
+
   constructor(props: Props) {
     super(props);
 
@@ -33,10 +34,13 @@ export default class LoginModal extends Component<Props, State> {
       instance.updateTabIndicator();
     }
 
-    $("#login_modal").modal({
-      onCloseEnd: this.props.close
-    });
-    $("#login_modal").modal("open");
+    const modal = document.getElementById("login_modal");
+    if (modal !== null) {
+      this.modalInstance = Materialize.Modal.init(modal, {
+        onCloseEnd: this.props.close
+      });
+      this.modalInstance.open();
+    }
   }
 
   changeDisplay = (display: Display) => {
@@ -44,7 +48,9 @@ export default class LoginModal extends Component<Props, State> {
   };
 
   successfullyLoggedIn = () => {
-    $("#login_modal").modal("close");
+    if (this.modalInstance) {
+      this.modalInstance.close();
+    }
   };
 
   render() {
