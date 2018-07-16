@@ -71,13 +71,12 @@ export default class Timer extends Component<Props, State> {
         <div className="card-content">
           <TimeDisplay id={timer.id} />
         </div>
-        <div className="card-action">
-          <Actions
-            edit={this.handleEdit}
-            reset={this.handleReset}
-            delete={this.handleDelete}
-          />
-        </div>
+        <Actions
+          className="card-action"
+          edit={this.handleEdit}
+          reset={this.handleReset}
+          delete={this.handleDelete}
+        />
       </TimerContainer>
     );
   }

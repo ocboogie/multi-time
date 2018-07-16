@@ -5,12 +5,13 @@ import { faTrashAlt } from "@fortawesome/free-solid-svg-icons/faTrashAlt";
 import { faEdit } from "@fortawesome/free-solid-svg-icons/faEdit";
 import { faRedo } from "@fortawesome/free-solid-svg-icons/faRedo";
 
-import ActionsContainer from "./ActionsStyles";
+import ActionsContainer, { Action } from "./ActionsStyles";
 
 export interface Props {
   edit: () => void;
   reset: () => void;
   delete: () => void;
+  className?: string;
 }
 
 export default class Actions extends Component<Props> {
@@ -33,36 +34,36 @@ export default class Actions extends Component<Props> {
 
   render() {
     return (
-      <ActionsContainer>
+      <ActionsContainer className={this.props.className}>
         {/* TODO: work on accessibility */}
         {/* eslint-disable jsx-a11y/click-events-have-key-events */}
-        <span
+        <Action
           onClick={this.props.edit}
           tabIndex={0}
           role="button"
-          className="action-tooltipped"
+          className="action-tooltipped waves-effect"
           data-tooltip="Edit"
         >
           <FontAwesomeIcon size="lg" icon={faEdit} />
-        </span>
-        <span
+        </Action>
+        <Action
           onClick={this.props.reset}
           tabIndex={0}
           role="button"
-          className="action-tooltipped"
+          className="action-tooltipped waves-effect"
           data-tooltip="Reset"
         >
           <FontAwesomeIcon size="lg" icon={faRedo} />
-        </span>
-        <span
+        </Action>
+        <Action
           onClick={this.props.delete}
           tabIndex={0}
           role="button"
-          className="action-tooltipped"
+          className="action-tooltipped waves-effect"
           data-tooltip="Delete"
         >
           <FontAwesomeIcon size="lg" icon={faTrashAlt} />
-        </span>
+        </Action>
         {/* eslint-enable jsx-a11y/click-events-have-key-events */}
       </ActionsContainer>
     );
