@@ -223,7 +223,7 @@ export const syncTimer = (newTimerState: TimerState): ThunkAction<void> => (
   // Remove old timers
   const newTimerIds = Object.keys(newTimerState);
   Object.keys(state.timer).forEach(id => {
-    if (newTimerIds.indexOf(id) !== -1) {
+    if (newTimerIds.indexOf(id) === -1) {
       dispatch(permRemoveTimer(id, false));
     }
   });
