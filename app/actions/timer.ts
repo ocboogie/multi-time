@@ -59,7 +59,9 @@ export const addTimer = (
   const { auth } = getState();
   const user = firebase.auth().currentUser;
   if (auth === "loggedin" && user !== null) {
-    window.db.doc(`/users/${user.uid}/timers/${timer.id}`).set(timer);
+    window.db
+      .doc(`/users/${user.uid}/timers/${timer.id}`)
+      .set(timer.name === null ? { ...timer, name: "" } : timer);
   }
 };
 
