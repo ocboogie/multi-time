@@ -16,7 +16,7 @@
       "error",
       {
         "newlines-between": "always",
-        "groups": ["builtin", "external", ["sibling", "parent"], "index"]
+        "groups": [["builtin", "external"], ["sibling", "parent"], "index"]
       }
     ],
     "import/no-cycle": "off",
@@ -27,6 +27,7 @@
   },
   "plugins": ["import", "jsx-a11y"],
   "settings": {
+    "import/core-modules": ["react", "react-dom"],
     "import/resolver": "webpack"
   }
 }
