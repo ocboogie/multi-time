@@ -12,10 +12,10 @@ export interface Props {
 }
 
 const Timers = (props: Props) => {
-  if (props.authState === "signedout") {
+  if (props.authState.stage === "signedout") {
     return <Empty>You aren&apos;t logged in!</Empty>;
   }
-  if (props.authState === "loggingin") {
+  if (props.authState.stage === "loggingin") {
     return <Empty>Loading...</Empty>;
   }
   if (Object.values(props.timers).length === 0) {

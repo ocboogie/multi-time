@@ -1,4 +1,3 @@
-import firebase from "firebase/app";
 import uuid from "uuid/v4";
 import isEqual from "lodash.isequal";
 import { createAction } from "typesafe-actions";
@@ -57,10 +56,9 @@ export const addTimer = (
     return;
   }
   const { auth } = getState();
-  const user = firebase.auth().currentUser;
-  if (auth === "loggedin" && user !== null) {
+  if (auth.stage === "loggedin") {
     window.db
-      .doc(`/users/${user.uid}/timers/${timer.id}`)
+      .doc(`/users/${auth.id}/timers/${timer.id}`)
       .set(timer.name === null ? { ...timer, name: "" } : timer);
   }
 };
@@ -91,9 +89,8 @@ export const permRemoveTimer = (
     return;
   }
   const { auth } = getState();
-  const user = firebase.auth().currentUser;
-  if (auth === "loggedin" && user !== null) {
-    window.db.doc(`/users/${user.uid}/timers/${id}`).delete();
+  if (auth.stage === "loggedin") {
+    window.db.doc(`/users/${auth.id}/timers/${id}`).delete();
   }
 };
 
@@ -107,10 +104,9 @@ export const startTimer = (
     return;
   }
   const { auth, timer } = getState();
-  const user = firebase.auth().currentUser;
-  if (auth === "loggedin" && user !== null) {
+  if (auth.stage === "loggedin") {
     window.db
-      .doc(`/users/${user.uid}/timers/${id}`)
+      .doc(`/users/${auth.id}/timers/${id}`)
       .update({ timing: timer[id].timing });
   }
 };
@@ -124,10 +120,9 @@ export const stopTimer = (
     return;
   }
   const { auth, timer } = getState();
-  const user = firebase.auth().currentUser;
-  if (auth === "loggedin" && user !== null) {
+  if (auth.stage === "loggedin") {
     window.db
-      .doc(`/users/${user.uid}/timers/${id}`)
+      .doc(`/users/${auth.id}/timers/${id}`)
       .update({ timing: timer[id].timing });
   }
 };
@@ -142,9 +137,8 @@ export const setTimingTimer = (
     return;
   }
   const { auth } = getState();
-  const user = firebase.auth().currentUser;
-  if (auth === "loggedin" && user !== null) {
-    window.db.doc(`/users/${user.uid}/timers/${id}`).update({ timing });
+  if (auth.stage === "loggedin") {
+    window.db.doc(`/users/${auth.id}/timers/${id}`).update({ timing });
   }
 };
 
@@ -157,9 +151,8 @@ export const resetTimer = (
     return;
   }
   const { auth } = getState();
-  const user = firebase.auth().currentUser;
-  if (auth === "loggedin" && user !== null) {
-    window.db.doc(`/users/${user.uid}/timers/${id}`).update({
+  if (auth.stage === "loggedin") {
+    window.db.doc(`/users/${auth.id}/timers/${id}`).update({
       timing: {
         baseTime: 0,
         paused: true
@@ -194,9 +187,8 @@ export const editTimer = (
     return;
   }
   const { auth, timer } = getState();
-  const user = firebase.auth().currentUser;
-  if (auth === "loggedin" && user !== null) {
-    window.db.doc(`/users/${user.uid}/timers/${id}`).set(timer[id]);
+  if (auth.stage === "loggedin") {
+    window.db.doc(`/users/${auth.id}/timers/${id}`).set(timer[id]);
   }
 };
 

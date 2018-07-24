@@ -7,7 +7,7 @@ import Hero from "../components/Hero";
 import { State, Dispatch } from "../types";
 
 const mapStateToProps = ({ auth }: State) => ({
-  isLoggedIn: auth === "loggedin"
+  isLoggedIn: auth.stage === "loggedin"
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) =>

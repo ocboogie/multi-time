@@ -7,7 +7,7 @@ import { syncTimer } from "./timer";
 let cancelStateSyncer: () => void;
 
 const actions = {
-  login: createAction("auth/LOGIN"),
+  login: createAction("auth/LOGIN", resolve => (id: string) => resolve({ id })),
   signOut: createAction("auth/SIGN_OUT"),
   loggingIn: createAction("auth/LOGGINGIN")
 };
@@ -16,7 +16,7 @@ export const signOut = (): ThunkAction<void> => (dispatch, getState) => {
   if (cancelStateSyncer) {
     cancelStateSyncer();
   }
-  if ((getState().auth as string) !== "signedout") {
+  if (getState().auth.stage !== "signedout") {
     firebase.auth().signOut();
   }
   dispatch(actions.signOut());
@@ -44,7 +44,7 @@ export const loggingIn = (): ThunkAction<void> => {
 
         dispatch(syncTimer(timers));
       });
-    dispatch(actions.login());
+    dispatch(actions.login(user.uid));
   };
 };
 

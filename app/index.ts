@@ -46,10 +46,10 @@ render(React.createElement(Root, { store }), document.getElementById("root"));
 firebase.auth().onAuthStateChanged(user => {
   const state = store.getState();
   if (user) {
-    if (state.auth !== "loggingin") {
+    if (state.auth.stage !== "loggingin") {
       store.dispatch(loggingIn());
     }
-  } else if (state.auth !== "signedout") {
+  } else if (state.auth.stage !== "signedout") {
     store.dispatch(signOut());
   }
 });
