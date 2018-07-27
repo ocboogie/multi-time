@@ -1,18 +1,27 @@
-import { createAction, ActionType } from "typesafe-actions";
+import { createAction } from "typesafe-actions";
+
+export type Modals = {
+  RESET_CONFIRM: {
+    timerId: string;
+  };
+  LOGIN: null;
+};
+
+export type ModalTypes = keyof Modals;
+export type ModalPayloads = Modals[ModalTypes];
 
 const actions = {
   closeModal: createAction("modal/CLOSE"),
-  displayResetConfirmModal: createAction(
-    "modal/DISPLAY_RESET_CONFIRM",
-    resolve => (timerId: string) => resolve({ timerId })
-  ),
-  displayLoginModal: createAction("modal/DISPLAY_LOGIN")
+  openModal: createAction(
+    "modal/OPEN",
+    resolve => (modal: ModalTypes, payload: ModalPayloads) =>
+      resolve({ modal, payload })
+  )
 };
 
-export interface DisplayResetConfirmModalPayload {
-  timerId: string;
-}
+export const displayResetConfirm = (id: string) =>
+  actions.openModal("RESET_CONFIRM", { timerId: id });
 
-export type ModalPayloads = DisplayResetConfirmModalPayload;
+export const displayLogin = () => actions.openModal("LOGIN", null);
 
 export default actions;

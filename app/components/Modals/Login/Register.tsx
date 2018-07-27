@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import isEmail from "validator/lib/isEmail";
 import firebase from "firebase/app";
 
-import readablePasswordValidator from "../../utils/readablePasswordValidator";
-import formClassValid from "../../utils/formClassValid";
+import readablePasswordValidator from "../../../utils/readablePasswordValidator";
+import formClassValid from "../../../utils/formClassValid";
 import RegisterContainer from "./RegisterStyles";
 
 // eslint-disable-next-line typescript/no-use-before-define

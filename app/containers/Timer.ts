@@ -8,7 +8,7 @@ import {
   removeTimer,
   editTimer
 } from "../actions/timer";
-import modalActoions from "../actions/modal";
+import { displayResetConfirm } from "../actions/modal";
 import { State, Dispatch } from "../types";
 
 export interface Props {
@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
       play: startTimer,
       pause: stopTimer,
       delete: removeTimer,
-      displayResetConfirm: modalActoions.displayResetConfirmModal,
+      displayResetConfirm,
       editTimer
     },
     dispatch

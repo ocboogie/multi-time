@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import modalActions from "../actions/modal";
+import { displayLogin } from "../actions/modal";
 import { signOut } from "../actions/auth";
 import Hero from "../components/Hero";
 import { State, Dispatch } from "../types";
@@ -13,7 +13,7 @@ const mapStateToProps = ({ auth }: State) => ({
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
     {
-      login: modalActions.displayLoginModal,
+      login: displayLogin,
       signOut
     },
     dispatch

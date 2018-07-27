@@ -1,33 +1,21 @@
 import React, { Component } from "react";
 import Materialize from "materialize-css";
 
-import { DisplayResetConfirmModalPayload } from "../actions/modal";
+import { Modals } from "../../actions/modal";
+import Modal from "../../containers/Modal";
 
-export interface Props extends DisplayResetConfirmModalPayload {
+export type Props = {
   resetTimer: (id: string) => any;
-  close: () => any;
-}
+} & Modals["RESET_CONFIRM"];
 
 export default class ResetConfirmModal extends Component<Props> {
-  modalInstance?: Materialize.Modal;
-
-  componentDidMount() {
-    const modal = document.getElementById("reset_confirm_modal");
-    if (modal !== null) {
-      this.modalInstance = Materialize.Modal.init(modal, {
-        onCloseEnd: this.props.close
-      });
-      this.modalInstance.open();
-    }
-  }
-
   handleYes = () => {
     this.props.resetTimer(this.props.timerId);
   };
 
   render() {
     return (
-      <div id="reset_confirm_modal" className="modal">
+      <Modal id="RESET_CONFIRM">
         <div className="modal-content">
           <h4>Reset timer</h4>
           <p>Are you sure you want to reset this timer?</p>
@@ -47,7 +35,7 @@ export default class ResetConfirmModal extends Component<Props> {
             No
           </a>
         </div>
-      </div>
+      </Modal>
     );
   }
 }
