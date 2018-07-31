@@ -19,6 +19,8 @@ export interface Props {
 export type State = { title: string };
 
 export default class Title extends Component<Props, State> {
+  titleInput: HTMLInputElement | null = null;
+
   constructor(props: Props) {
     super(props);
 
@@ -32,6 +34,20 @@ export default class Title extends Component<Props, State> {
     }
     return true;
   }
+
+  componentDidMount() {
+    this.updateTitleFocus();
+  }
+
+  componentDidUpdate() {
+    this.updateTitleFocus();
+  }
+
+  updateTitleFocus = () => {
+    if (this.props.editable && this.titleInput) {
+      this.titleInput.focus();
+    }
+  };
 
   fabClickHandler = () => {
     if (this.props.paused) {
@@ -75,8 +91,7 @@ export default class Title extends Component<Props, State> {
 
     const title = this.props.editable ? (
       <TitleEdit
-        // eslint-disable-next-line jsx-a11y/no-autofocus
-        autoFocus
+        innerRef={titleInput => (this.titleInput = titleInput)}
         type="text"
         value={this.state.title}
         onChange={this.handleTitleChange}
