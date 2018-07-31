@@ -8,7 +8,7 @@ export type Props = {
   resetTimer: (id: string) => any;
 } & Modals["RESET_CONFIRM"];
 
-export default class ResetConfirmModal extends Component<Props> {
+export default class ResetConfirm extends Component<Props> {
   handleYes = () => {
     this.props.resetTimer(this.props.timerId);
   };

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Materialize from "materialize-css";
 
 import LoginModalContainer from "./indexStyles";
-import Login from "./Login";
+import LoginContainer from "./Login";
 import Recover from "./Recover";
 import Register from "./Register";
 import Modal from "../../../containers/Modal";
@@ -17,7 +17,7 @@ export interface State {
   display: Display;
 }
 
-export default class LoginModal extends Component<Props, State> {
+export default class Login extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
@@ -48,7 +48,7 @@ export default class LoginModal extends Component<Props, State> {
     switch (this.state.display) {
       case "login":
         content = (
-          <Login
+          <LoginContainer
             loggedIn={this.successfullyLoggedIn}
             forgotPassword={() => this.changeDisplay("recover")}
           />

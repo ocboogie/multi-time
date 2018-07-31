@@ -7,7 +7,7 @@ export type Props = {
   removeTimer: (id: string) => any;
 } & Modals["DELETE_CONFIRM"];
 
-export default class DeleteConfirmModal extends Component<Props> {
+export default class DeleteConfirm extends Component<Props> {
   handleYes = () => {
     this.props.removeTimer(this.props.timerId);
   };
