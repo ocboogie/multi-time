@@ -62,6 +62,9 @@ export default class Title extends Component<Props, State> {
   };
 
   cancelEditing = () => {
+    if (!this.props.editable) {
+      return;
+    }
     this.props.cancelEdit();
     this.props.changeTitle(this.state.title);
   };
