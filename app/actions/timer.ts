@@ -4,7 +4,7 @@ import { createAction } from "typesafe-actions";
 
 import { Timer, ModTimer, Timing, ThunkAction } from "../types";
 import { TimerState } from "../reducers/timer";
-import trashActions, { displayUndo } from "./trash";
+import { displayDeleteConfirm } from "./modal";
 
 const actions = {
   addTimer: createAction("timer/ADD", resolve => (timer: Timer) =>
@@ -172,9 +172,7 @@ export const removeTimer = (id: string): ThunkAction<void> => (
   }
   dispatch(stopTimer(timer.id));
   dispatch(actions.removeTimer(id));
-  dispatch(trashActions.appendTrash(timer));
-  dispatch(permRemoveTimer(id));
-  dispatch(displayUndo());
+  dispatch(displayDeleteConfirm(id));
 };
 
 export const editTimer = (

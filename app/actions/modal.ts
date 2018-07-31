@@ -4,6 +4,9 @@ export type Modals = {
   RESET_CONFIRM: {
     timerId: string;
   };
+  DELETE_CONFIRM: {
+    timerId: string;
+  };
   LOGIN: null;
 };
 
@@ -21,6 +24,9 @@ const actions = {
 
 export const displayResetConfirm = (id: string) =>
   actions.openModal("RESET_CONFIRM", { timerId: id });
+
+export const displayDeleteConfirm = (id: string) =>
+  actions.openModal("DELETE_CONFIRM", { timerId: id });
 
 export const displayLogin = () => actions.openModal("LOGIN", null);
 

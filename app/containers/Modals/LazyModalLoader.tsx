@@ -5,6 +5,7 @@ import Materialize from "materialize-css";
 import { State } from "../../types";
 import { ModalState } from "../../reducers/modal";
 import { ModalTypes } from "../../actions/modal";
+import DeleteConfirmModal from "./DeleteConfirmModal";
 import ResetConfirmModal from "./ResetConfirmModal";
 import LoginModal from "./LoginModal";
 
@@ -14,6 +15,7 @@ type ModalMap = { [M in ModalTypes]: React.ComponentClass<any> };
 
 const modals: ModalMap = {
   RESET_CONFIRM: ResetConfirmModal,
+  DELETE_CONFIRM: DeleteConfirmModal,
   LOGIN: LoginModal
 };
 
