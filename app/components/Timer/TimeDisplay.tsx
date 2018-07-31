@@ -37,8 +37,12 @@ export default class Timer extends Component<Props> {
   render() {
     const { timing } = this.props;
     const elapsed = getElapsedTime(timing.baseTime, timing.startedAt);
-    return (
-      <TimeDisplay>{prettyMs(elapsed, { secDecimalDigits: 1 })}</TimeDisplay>
-    );
+    // @types/pretty-ms is outdated
+    // Waitting on #27721
+    const prettyElapsed = prettyMs(elapsed, {
+      // @ts-ignore
+      keepDecimalsOnWholeSeconds: true
+    });
+    return <TimeDisplay>{prettyElapsed}</TimeDisplay>;
   }
 }
