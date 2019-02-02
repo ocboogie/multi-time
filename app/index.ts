@@ -12,7 +12,7 @@ import "materialize-css/dist/css/materialize.min.css";
 import Root from "./containers/Root";
 import configureStore from "./store";
 import { loggingIn, signOut } from "./actions/auth";
-import "./style";
+import "./style.css";
 
 const store = configureStore();
 
@@ -26,7 +26,7 @@ firebase.initializeApp({
 });
 
 const db = firebase.firestore();
-db.settings({ timestampsInSnapshots: true });
+db.settings({});
 
 window.db = db;
 
