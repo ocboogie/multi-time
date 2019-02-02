@@ -4,7 +4,7 @@ import { Modals } from "../../actions/modal";
 import Modal from "../../containers/Modal";
 
 export type Props = {
-  removeTimer: (id: string) => any;
+  removeTimer: (id: string) => void;
 } & Modals["DELETE_CONFIRM"];
 
 export default class DeleteConfirm extends Component<Props> {

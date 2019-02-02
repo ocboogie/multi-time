@@ -16,7 +16,9 @@ export interface Props {
   cancelEdit: () => void;
 }
 
-export type State = { title: string };
+export interface State {
+  title: string;
+}
 
 export default class Title extends Component<Props, State> {
   titleInput: HTMLInputElement | null = null;

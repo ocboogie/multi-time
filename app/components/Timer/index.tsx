@@ -9,11 +9,11 @@ import TimerContainer from "./indexStyles";
 
 export interface Props {
   timer: TimerType;
-  play: (id: string, baseTime: number) => any;
-  pause: (id: string) => any;
-  delete: (id: string) => any;
-  displayResetConfirm: (id: string) => any;
-  editTimer: (id: string, modification: ModTimer) => any;
+  play: (id: string, baseTime: number) => void;
+  pause: (id: string) => void;
+  delete: (id: string) => void;
+  displayResetConfirm: (id: string) => void;
+  editTimer: (id: string, modification: ModTimer) => void;
 }
 
 export interface State {

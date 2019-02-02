@@ -12,7 +12,7 @@ export default (initialState?: object) => {
 
   // Add redux-logger if in development
   if (process.env.NODE_ENV === "development") {
-    // eslint-disable-next-line typescript/no-var-requires
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const { createLogger } = require("redux-logger");
 
     middleware.push(
@@ -25,7 +25,7 @@ export default (initialState?: object) => {
 
   // Create Store
   const store = createStore(
-    rootReducer, // eslint-disable-next-line typescript/no-non-null-assertion
+    rootReducer, // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     initialState!,
     composeEnhancers(
       applyMiddleware(thunk as ThunkMiddleware<State, Action>),

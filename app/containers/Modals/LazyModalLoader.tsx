@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import Materialize from "materialize-css";
 
 import { State } from "../../types";
 import { ModalState } from "../../reducers/modal";
@@ -11,6 +10,7 @@ import Login from "./Login";
 
 export type Props = ModalState;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ModalMap = { [M in ModalTypes]: React.ComponentClass<any> };
 
 const modals: ModalMap = {

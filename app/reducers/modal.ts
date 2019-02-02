@@ -1,4 +1,3 @@
-import { Reducer } from "redux";
 import { ActionType, getType } from "typesafe-actions";
 
 import modal, { Modals } from "../actions/modal";

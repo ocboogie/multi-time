@@ -1,13 +1,16 @@
 {
-  "parser": "typescript-eslint-parser",
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "sourceType": "module",
-    "allowImportExportEverywhere": true
+    "allowImportExportEverywhere": true,
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "extends": [
-    "typescript",
-    "typescript/react",
-    "typescript/prettier",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "prettier/@typescript-eslint",
     "plugin:import/recommended",
     "plugin:jsx-a11y/recommended"
   ],
@@ -21,11 +24,13 @@
     ],
     "import/no-cycle": "off",
     "import/named": "off",
-    "typescript/explicit-function-return-type": "off",
-    "typescript/explicit-member-accessibility": "off",
-    "jsx-a11y/label-has-for": "off"
+    "@typescript-eslint/explicit-member-accessibility": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "jsx-a11y/label-has-for": "off",
+    "prettier/prettier": "error"
   },
-  "plugins": ["import", "jsx-a11y"],
+  "plugins": ["import", "jsx-a11y", "prettier"],
   "settings": {
     "import/core-modules": ["react", "react-dom"],
     "import/resolver": "webpack"

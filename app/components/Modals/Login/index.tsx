@@ -10,7 +10,7 @@ import Modal from "../../../containers/Modal";
 type Display = "login" | "register" | "recover";
 
 export interface Props {
-  close: () => any;
+  close: () => void;
 }
 
 export interface State {

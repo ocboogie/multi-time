@@ -30,7 +30,7 @@ db.settings({});
 
 window.db = db;
 
-// eslint-disable-next-line typescript/prefer-namespace-keyword
+// eslint-disable-next-line @typescript-eslint/prefer-namespace-keyword
 declare global {
   interface Window {
     db: firebase.firestore.Firestore;

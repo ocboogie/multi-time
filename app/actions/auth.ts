@@ -1,5 +1,5 @@
 import firebase from "firebase/app";
-import { createAction, ActionType } from "typesafe-actions";
+import { createAction } from "typesafe-actions";
 
 import { ThunkAction } from "../types";
 import { syncTimer } from "./timer";

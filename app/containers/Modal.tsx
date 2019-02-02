@@ -7,7 +7,7 @@ import { Dispatch, State } from "../types";
 import modalActions from "../actions/modal";
 
 export interface LocalProps {
-  close: () => any;
+  close: () => void;
   id: string;
   active: boolean;
 }

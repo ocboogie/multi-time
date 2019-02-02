@@ -1,6 +1,6 @@
 import { createAction } from "typesafe-actions";
 
-export type Modals = {
+export interface Modals {
   RESET_CONFIRM: {
     timerId: string;
   };
@@ -8,7 +8,7 @@ export type Modals = {
     timerId: string;
   };
   LOGIN: null;
-};
+}
 
 export type ModalTypes = keyof Modals;
 export type ModalPayloads = Modals[ModalTypes];

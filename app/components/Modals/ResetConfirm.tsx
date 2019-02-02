@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import Materialize from "materialize-css";
 
 import { Modals } from "../../actions/modal";
 import Modal from "../../containers/Modal";
 
 export type Props = {
-  resetTimer: (id: string) => any;
+  resetTimer: (id: string) => void;
 } & Modals["RESET_CONFIRM"];
 
 export default class ResetConfirm extends Component<Props> {

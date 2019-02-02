@@ -6,7 +6,7 @@ import readablePasswordValidator from "../../../utils/readablePasswordValidator"
 import formClassValid from "../../../utils/formClassValid";
 import RegisterContainer from "./RegisterStyles";
 
-// eslint-disable-next-line typescript/no-use-before-define
+// eslint-disable-next-line @typescript-eslint/no-use-before-define
 type Fields = keyof typeof Login.validators;
 
 export interface Props {
